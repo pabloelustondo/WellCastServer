@@ -1,0 +1,29 @@
+﻿@model WellCastServer.Models.ConditionSymptom
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>ConditionSymptom</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Condition.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Condition.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Symptom.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Symptom.Name)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

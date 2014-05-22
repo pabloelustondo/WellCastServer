@@ -1,0 +1,46 @@
+﻿@model WellCastServer.Models.ConditionSymptom
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>ConditionSymptom</legend>
+
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ConditionID, "Condition")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ConditionID", String.Empty)
+            @Html.ValidationMessageFor(model => model.ConditionID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SymptomID, "Symptom")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("SymptomID", String.Empty)
+            @Html.ValidationMessageFor(model => model.SymptomID)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
