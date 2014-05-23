@@ -16,6 +16,8 @@ namespace WellCastServer.Models
         }
 
         public DbSet<UserProfile> UserProfiles { get; set; }
+
+        public DbSet<Condition> Conditions { get; set; }
     }
 
     [Table("UserProfile")]

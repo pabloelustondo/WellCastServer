@@ -24,7 +24,7 @@ namespace WellCastServer.Controllers
         }
 
         // GET api/Symptoms/5
-        public Symptom GetSymptom(int id)
+        public Symptom GetSymptom(Guid id)
         {
             Symptom symptom = db.WellCastSymptoms.Find(id);
             if (symptom == null)
@@ -36,7 +36,7 @@ namespace WellCastServer.Controllers
         }
 
         // PUT api/Symptoms/5
-        public HttpResponseMessage PutSymptom(int id, Symptom symptom)
+        public HttpResponseMessage PutSymptom(Guid id, Symptom symptom)
         {
             if (!ModelState.IsValid)
             {
@@ -81,7 +81,7 @@ namespace WellCastServer.Controllers
         }
 
         // DELETE api/Symptoms/5
-        public HttpResponseMessage DeleteSymptom(int id)
+        public HttpResponseMessage DeleteSymptom(Guid id)
         {
             Symptom symptom = db.WellCastSymptoms.Find(id);
             if (symptom == null)

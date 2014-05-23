@@ -25,7 +25,7 @@ namespace WellCastServer.Controllers
         //
         // GET: /ConditionSymptom/Details/5
 
-        public ActionResult Details(int id = 0)
+        public ActionResult Details(Guid id)
         {
             ConditionSymptom conditionsymptom = db.WellCastConditionSymptoms.Find(id);
             if (conditionsymptom == null)
@@ -54,6 +54,7 @@ namespace WellCastServer.Controllers
         {
             if (ModelState.IsValid)
             {
+                conditionsymptom.ID = Guid.NewGuid();
                 db.WellCastConditionSymptoms.Add(conditionsymptom);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -67,7 +68,7 @@ namespace WellCastServer.Controllers
         //
         // GET: /ConditionSymptom/Edit/5
 
-        public ActionResult Edit(int id = 0)
+        public ActionResult Edit(Guid id)
         {
             ConditionSymptom conditionsymptom = db.WellCastConditionSymptoms.Find(id);
             if (conditionsymptom == null)
@@ -100,7 +101,7 @@ namespace WellCastServer.Controllers
         //
         // GET: /ConditionSymptom/Delete/5
 
-        public ActionResult Delete(int id = 0)
+        public ActionResult Delete(Guid id)
         {
             ConditionSymptom conditionsymptom = db.WellCastConditionSymptoms.Find(id);
             if (conditionsymptom == null)
@@ -115,7 +116,7 @@ namespace WellCastServer.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(Guid id)
         {
             ConditionSymptom conditionsymptom = db.WellCastConditionSymptoms.Find(id);
             db.WellCastConditionSymptoms.Remove(conditionsymptom);

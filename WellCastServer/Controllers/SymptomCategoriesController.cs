@@ -16,14 +16,14 @@ namespace WellCastServer.Controllers
     {
         private WellCastServerContext db = new WellCastServerContext();
 
-        // GET api/SymptomCategorys
+        // GET api/SymptomCategories
         public IEnumerable<SymptomCategory> GetSymptomCategories()
         {
             return db.WellCastSymptomCategories.AsEnumerable();
         }
 
-        // GET api/SymptomCategorys/5
-        public SymptomCategory GetSymptomCategory(int id)
+        // GET api/SymptomCategories/5
+        public SymptomCategory GetSymptomCategory(Guid id)
         {
             SymptomCategory symptomcategory = db.WellCastSymptomCategories.Find(id);
             if (symptomcategory == null)
@@ -34,8 +34,8 @@ namespace WellCastServer.Controllers
             return symptomcategory;
         }
 
-        // PUT api/SymptomCategorys/5
-        public HttpResponseMessage PutSymptomCategory(int id, SymptomCategory symptomcategory)
+        // PUT api/SymptomCategories/5
+        public HttpResponseMessage PutSymptomCategory(Guid id, SymptomCategory symptomcategory)
         {
             if (!ModelState.IsValid)
             {
@@ -61,7 +61,7 @@ namespace WellCastServer.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        // POST api/SymptomCategorys
+        // POST api/SymptomCategories
         public HttpResponseMessage PostSymptomCategory(SymptomCategory symptomcategory)
         {
             if (ModelState.IsValid)
@@ -79,8 +79,8 @@ namespace WellCastServer.Controllers
             }
         }
 
-        // DELETE api/SymptomCategorys/5
-        public HttpResponseMessage DeleteSymptomCategory(int id)
+        // DELETE api/SymptomCategories/5
+        public HttpResponseMessage DeleteSymptomCategory(Guid id)
         {
             SymptomCategory symptomcategory = db.WellCastSymptomCategories.Find(id);
             if (symptomcategory == null)

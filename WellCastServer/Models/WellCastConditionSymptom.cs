@@ -5,14 +5,12 @@ using System.Web;
 
 namespace WellCastServer.Models
 {
-    public class ConditionSymptom
+    public class ConditionSymptom: WellCastRelation
     {
-            public int ID { get; set; }
-
-            public int ConditionID { get; set; }
+            public Guid ConditionID { get; set; }
             public virtual Condition Condition { get; set; }
 
-            public int SymptomID { get; set; }
+            public Guid SymptomID { get; set; }
             public virtual Symptom Symptom { get; set; }
 
     }

@@ -24,7 +24,7 @@ namespace WellCastServer.Controllers
         }
 
         // GET api/ConditionSymptoms/5
-        public ConditionSymptom GetConditionSymptom(int id)
+        public ConditionSymptom GetConditionSymptom(Guid id)
         {
             ConditionSymptom conditionsymptom = db.WellCastConditionSymptoms.Find(id);
             if (conditionsymptom == null)
@@ -36,7 +36,7 @@ namespace WellCastServer.Controllers
         }
 
         // PUT api/ConditionSymptoms/5
-        public HttpResponseMessage PutConditionSymptom(int id, ConditionSymptom conditionsymptom)
+        public HttpResponseMessage PutConditionSymptom(Guid id, ConditionSymptom conditionsymptom)
         {
             if (!ModelState.IsValid)
             {
@@ -81,7 +81,7 @@ namespace WellCastServer.Controllers
         }
 
         // DELETE api/ConditionSymptoms/5
-        public HttpResponseMessage DeleteConditionSymptom(int id)
+        public HttpResponseMessage DeleteConditionSymptom(Guid id)
         {
             ConditionSymptom conditionsymptom = db.WellCastConditionSymptoms.Find(id);
             if (conditionsymptom == null)

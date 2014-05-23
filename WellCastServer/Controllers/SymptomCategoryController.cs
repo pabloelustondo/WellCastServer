@@ -24,7 +24,7 @@ namespace WellCastServer.Controllers
         //
         // GET: /SymptomCategory/Details/5
 
-        public ActionResult Details(int id = 0)
+        public ActionResult Details(Guid id)
         {
             SymptomCategory symptomcategory = db.WellCastSymptomCategories.Find(id);
             if (symptomcategory == null)
@@ -51,6 +51,7 @@ namespace WellCastServer.Controllers
         {
             if (ModelState.IsValid)
             {
+                symptomcategory.ID = Guid.NewGuid();
                 db.WellCastSymptomCategories.Add(symptomcategory);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -62,7 +63,7 @@ namespace WellCastServer.Controllers
         //
         // GET: /SymptomCategory/Edit/5
 
-        public ActionResult Edit(int id = 0)
+        public ActionResult Edit(Guid id)
         {
             SymptomCategory symptomcategory = db.WellCastSymptomCategories.Find(id);
             if (symptomcategory == null)
@@ -91,7 +92,7 @@ namespace WellCastServer.Controllers
         //
         // GET: /SymptomCategory/Delete/5
 
-        public ActionResult Delete(int id = 0)
+        public ActionResult Delete(Guid id)
         {
             SymptomCategory symptomcategory = db.WellCastSymptomCategories.Find(id);
             if (symptomcategory == null)
@@ -106,7 +107,7 @@ namespace WellCastServer.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(Guid id)
         {
             SymptomCategory symptomcategory = db.WellCastSymptomCategories.Find(id);
             db.WellCastSymptomCategories.Remove(symptomcategory);

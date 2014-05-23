@@ -23,7 +23,7 @@ namespace WellCastServer.Controllers
         }
 
         // GET api/Conditions/5
-        public Condition GetCondition(int id)
+        public Condition GetCondition(Guid id)
         {
             Condition condition = db.WellCastConditions.Find(id);
             if (condition == null)
@@ -35,7 +35,7 @@ namespace WellCastServer.Controllers
         }
 
         // PUT api/Conditions/5
-        public HttpResponseMessage PutCondition(int id, Condition condition)
+        public HttpResponseMessage PutCondition(Guid id, Condition condition)
         {
             if (!ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace WellCastServer.Controllers
         }
 
         // DELETE api/Conditions/5
-        public HttpResponseMessage DeleteCondition(int id)
+        public HttpResponseMessage DeleteCondition(Guid id)
         {
             Condition condition = db.WellCastConditions.Find(id);
             if (condition == null)

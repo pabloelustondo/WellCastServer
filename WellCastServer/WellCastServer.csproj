@@ -187,8 +187,8 @@
     <Compile Include="Controllers\ConditionSymptomController.cs" />
     <Compile Include="Controllers\ConditionSymptomsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\SymptomCategoryController.cs" />
     <Compile Include="Controllers\SymptomCategoriesController.cs" />
+    <Compile Include="Controllers\SymptomCategoryController.cs" />
     <Compile Include="Controllers\SymptomController.cs" />
     <Compile Include="Controllers\SymptomsController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -198,6 +198,8 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\DatabaseContextInitializer.cs" />
+    <Compile Include="Models\WellCastWellCastRelation.cs" />
+    <Compile Include="Models\WellCastWellCastEntity.cs" />
     <Compile Include="Models\WellCastCondition.cs" />
     <Compile Include="Models\WellCastConditionSymptom.cs" />
     <Compile Include="Models\WellCastServerContext.cs" />
