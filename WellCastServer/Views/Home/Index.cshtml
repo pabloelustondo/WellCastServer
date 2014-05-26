@@ -1,4 +1,5 @@
 ﻿
+<h1>Basic Get Operations</h1>
 <table>
     <tr>
         <td>
@@ -14,10 +15,46 @@
         <td>
             <a href="./api/Conditions">GET: /api/Conditions</a>
         </td>
+        <td>@{
+            
+            Guid firstCondition = ViewBag.conditions[0].ID;
+        }
+            <a href="./api/Conditions/@firstCondition.ToString()">GET: /api/Conditions/@firstCondition.ToString()</a>
+        </td>
     </tr> 
     <tr>
         <td>
             <a href="./api/ConditionSymptoms">GET: /api/ConditionSymptoms</a>
         </td>
     </tr>
+    <tr>
+        <td>
+            <a href="./api/ErrorMessages">GET: /api/ErrorMessages</a>
+        </td>
+    </tr>
+
+</table>
+
+<h1>Sample Error Conditions</h1>
+<h2>Calling GET with wrong ID</h2>
+<table>
+    <tr>
+        <td>
+            <a href="./api/Conditions/a3107486-80cb-48d4-adfb-1a3b99b44b63">GET: /api/Conditions/{non existent guid}</a>
+         </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="./api/Conditions/a3107486-80cb-48d4-adfb-1a3b99b44b6">GET: /api/Conditions/{malformed guid}</a>
+        </td>
+    </tr>
+    <tr>
+    </tr>
+<tr>
+    <td>
+        <form action="./api/ErrorMessages" method="POST">
+            <button type="submit">POST:./api/ErrorMessages/null (error)</button>
+        </form>
+    </td>
+</tr>
 </table>

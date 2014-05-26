@@ -186,6 +186,7 @@
     <Compile Include="Controllers\ConditionsController.cs" />
     <Compile Include="Controllers\ConditionSymptomController.cs" />
     <Compile Include="Controllers\ConditionSymptomsController.cs" />
+    <Compile Include="Controllers\ErrorMessageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SymptomCategoriesController.cs" />
     <Compile Include="Controllers\SymptomCategoryController.cs" />
@@ -198,6 +199,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\DatabaseContextInitializer.cs" />
+    <Compile Include="Models\WellCastEnvelope.cs" />
     <Compile Include="Models\WellCastWellCastRelation.cs" />
     <Compile Include="Models\WellCastWellCastEntity.cs" />
     <Compile Include="Models\WellCastCondition.cs" />
@@ -339,6 +341,11 @@
     <Content Include="Views\SymptomCategory\Create.cshtml" />
     <Content Include="Views\SymptomCategory\Edit.cshtml" />
     <Content Include="Views\SymptomCategory\Delete.cshtml" />
+    <Content Include="Views\ErrorMessage\Index.cshtml" />
+    <Content Include="Views\ErrorMessage\Details.cshtml" />
+    <Content Include="Views\ErrorMessage\Create.cshtml" />
+    <Content Include="Views\ErrorMessage\Edit.cshtml" />
+    <Content Include="Views\ErrorMessage\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
