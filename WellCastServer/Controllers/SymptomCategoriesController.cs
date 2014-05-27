@@ -17,21 +17,46 @@ namespace WellCastServer.Controllers
         private WellCastServerContext db = new WellCastServerContext();
 
         // GET api/SymptomCategories
-        public IEnumerable<SymptomCategory> GetSymptomCategories()
+        public WellCastEnvelope<IEnumerable<SymptomCategory>> GetSymptomCategories()
         {
-            return db.WellCastSymptomCategories.AsEnumerable();
+            var symptomCategories = db.WellCastSymptomCategories.AsEnumerable();
+            var envelop = new WellCastEnvelope<IEnumerable<SymptomCategory>>(symptomCategories);
+            return envelop;
         }
 
         // GET api/SymptomCategories/5
-        public SymptomCategory GetSymptomCategory(Guid id)
+        public WellCastEnvelope<SymptomCategory> GetSymptomCategory(String id)
         {
-            SymptomCategory symptomcategory = db.WellCastSymptomCategories.Find(id);
-            if (symptomcategory == null)
+            WellCastEnvelope<SymptomCategory> envelope;
+            try
             {
-                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
-            }
+                Guid gid = new Guid(id);
+                SymptomCategory symptomCategory = db.WellCastSymptomCategories.Find(gid);
+                envelope = new WellCastEnvelope<SymptomCategory>(symptomCategory);
 
-            return symptomcategory;
+                if (symptomCategory == null)
+                {
+                    envelope.meta.status = WellCastStatusList.NonExistingId.code;
+                }
+
+            }
+            catch (Exception e)
+            {
+                envelope = new WellCastEnvelope<SymptomCategory>(null);
+                if (e.Message.Contains("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"))
+                {
+
+                    envelope.meta.status = WellCastStatusList.InvalidId.code;
+                    envelope.meta.message = e.Message;
+
+                }
+                else
+                {
+                    envelope.meta.status = WellCastStatusList.Exception.code;
+                    envelope.meta.message = e.Message;
+                }
+            }
+            return envelope;
         }
 
         // PUT api/SymptomCategories/5

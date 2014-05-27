@@ -1,0 +1,18 @@
+﻿@using WellCastServer.Models
+
+@{
+    ViewBag.Title = "ShowMetaDefinitions";
+}
+
+<h2>Meta Definitions</h2>
+
+<h2>Status Codes and Messages</h2>
+
+<table>
+    @foreach (WellCastStatus s in WellCastStatusList.statusList)
+    {<tr>  <td>@s.code</td> <td>@s.message</td> </tr>
+
+    }
+
+</table>
+

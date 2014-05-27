@@ -14,6 +14,8 @@ namespace WellCastServer.Controllers
         {
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
             ViewBag.conditions = db.WellCastConditions.ToList();
+            ViewBag.symptomCategories = db.WellCastSymptomCategories.ToList();
+            ViewBag.symptoms = db.WellCastSymptoms.ToList();
             return View();
         }
 

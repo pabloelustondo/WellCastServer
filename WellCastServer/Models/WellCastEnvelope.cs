@@ -40,12 +40,18 @@ namespace WellCastServer.Models
         }
     }
 
-    public class WellCastMessages {
+    public class WellCastStatusList {
+        public static readonly List<WellCastStatus> statusList = new List<WellCastStatus>(); 
         public static readonly WellCastStatus Ok = new WellCastStatus("Ok", "Everything is Ok");
         public static readonly WellCastStatus NonExistingId = new WellCastStatus("NonExistentId", "Cannot find entity associated with provided ID");
         public static readonly WellCastStatus InvalidId = new WellCastStatus("InvalidId", "The provided ID is not in the correct format");
         public static readonly WellCastStatus Exception = new WellCastStatus("Exception", "Message will be the actual exception");
  
-
+        static WellCastStatusList() {
+            statusList.Add(Ok);
+            statusList.Add(NonExistingId);
+            statusList.Add(InvalidId);
+            statusList.Add(Exception);
+            }
     }
 }

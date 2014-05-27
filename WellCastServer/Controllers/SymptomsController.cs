@@ -17,24 +17,47 @@ namespace WellCastServer.Controllers
         private WellCastServerContext db = new WellCastServerContext();
 
         // GET api/Symptoms
-        public IEnumerable<Symptom> GetSymptoms()
+        public WellCastEnvelope<IEnumerable<Symptom>> GetSymptoms()
         {
-            var wellcastsymptoms = db.WellCastSymptoms.Include(s => s.SymptomCategory);
-            return wellcastsymptoms.AsEnumerable();
+            var symptoms = db.WellCastSymptoms.AsEnumerable();
+            var envelop = new WellCastEnvelope<IEnumerable<Symptom>>(symptoms);
+            return envelop;
         }
 
         // GET api/Symptoms/5
-        public Symptom GetSymptom(Guid id)
+        public WellCastEnvelope<Symptom> GetSymptom(String id)
         {
-            Symptom symptom = db.WellCastSymptoms.Find(id);
-            if (symptom == null)
+            WellCastEnvelope<Symptom> envelope;
+            try
             {
-                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
+                Guid gid = new Guid(id);
+                Symptom symptom = db.WellCastSymptoms.Find(gid);
+                envelope = new WellCastEnvelope<Symptom>(symptom);
+
+                if (symptom == null)
+                {
+                    envelope.meta.status = WellCastStatusList.NonExistingId.code;
+                }
+
             }
+            catch (Exception e)
+            {
+                envelope = new WellCastEnvelope<Symptom>(null);
+                if (e.Message.Contains("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"))
+                {
 
-            return symptom;
+                    envelope.meta.status = WellCastStatusList.InvalidId.code;
+                    envelope.meta.message = e.Message;
+
+                }
+                else
+                {
+                    envelope.meta.status = WellCastStatusList.Exception.code;
+                    envelope.meta.message = e.Message;
+                }
+            }
+            return envelope;
         }
-
         // PUT api/Symptoms/5
         public HttpResponseMessage PutSymptom(Guid id, Symptom symptom)
         {

@@ -5,11 +5,26 @@
         <td>
             <a href="./api/SymptomCategories">GET: /api/SymptomCategories</a>
         </td>
+        <td>
+            @{
+
+            Guid firstSymptomCategory = ViewBag.symptomCategories[0].ID;
+        }
+        <a href="./api/SymptomCategories/@firstSymptomCategory.ToString()">GET: /api/SymptomCategories/@firstSymptomCategory.ToString()</a>
+    </td>
     </tr>
     <tr>
     <td>
            <a href="./api/Symptoms">GET: /api/Symptoms</a>
     </td>
+        <td>
+            @{
+
+            Guid firstSymptom = ViewBag.symptoms[0].ID;
+        }
+        <a href="./api/Symptoms/@firstSymptom.ToString()">GET: /api/Symptoms/@firstSymptom.ToString()</a>
+    </td>
+
     </tr>
     <tr>
         <td>
@@ -22,16 +37,6 @@
             <a href="./api/Conditions/@firstCondition.ToString()">GET: /api/Conditions/@firstCondition.ToString()</a>
         </td>
     </tr> 
-    <tr>
-        <td>
-            <a href="./api/ConditionSymptoms">GET: /api/ConditionSymptoms</a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="./api/ErrorMessages">GET: /api/ErrorMessages</a>
-        </td>
-    </tr>
 
 </table>
 
@@ -50,11 +55,5 @@
     </tr>
     <tr>
     </tr>
-<tr>
-    <td>
-        <form action="./api/ErrorMessages" method="POST">
-            <button type="submit">POST:./api/ErrorMessages/null (error)</button>
-        </form>
-    </td>
-</tr>
+
 </table>

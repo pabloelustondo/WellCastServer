@@ -35,7 +35,7 @@ namespace WellCastServer.Controllers
 
             if (condition == null)
             {
-                envelope.meta.status = WellCastMessages.NonExistingId.code;
+                envelope.meta.status = WellCastStatusList.NonExistingId.code;
             }
 
             }
@@ -44,11 +44,11 @@ namespace WellCastServer.Controllers
                 envelope = new WellCastEnvelope<Condition>(null);
                 if (e.Message.Contains("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")){
                     
-                envelope.meta.status = WellCastMessages.InvalidId.code;
+                envelope.meta.status = WellCastStatusList.InvalidId.code;
                 envelope.meta.message = e.Message;
                 
                 }else{
-                envelope.meta.status = WellCastMessages.Exception.code;
+                envelope.meta.status = WellCastStatusList.Exception.code;
                 envelope.meta.message = e.Message;
                     }
             }

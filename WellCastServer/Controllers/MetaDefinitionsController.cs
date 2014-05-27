@@ -9,11 +9,10 @@ using WellCastServer.Models;
 
 namespace WellCastServer.Controllers
 {
-    public class ErrorMessageController : Controller
+    public class MetaDefinitionsController : Controller
     {
-        private WellCastServerContext db = new WellCastServerContext();
 
-        public ActionResult Index()
+        public ActionResult ShowMetaDefinitions()
         {
             return View();
         }
