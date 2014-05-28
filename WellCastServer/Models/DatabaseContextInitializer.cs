@@ -75,6 +75,32 @@ namespace WellCastServer.Models
         db.WellCastLocations.Add(location2);
         db.SaveChanges();
 
+        var profile1 = new Profile { Name = "Profile1", Description = "Profile1", Gender = WellCastGender.Male, DOB = new DateTime(1964, 11, 3) };
+        var profile2 = new Profile { Name = "Profile2", Description = "Profile2", Gender = WellCastGender.Male, DOB = new DateTime(1964, 11, 3) };
+        var profile3 = new Profile { Name = "Profile3", Description = "Profile3", Gender = WellCastGender.Male, DOB = new DateTime(1964, 11, 3) };
+        var profile4 = new Profile { Name = "Profile4", Description = "Profile4", Gender = WellCastGender.Male, DOB = new DateTime(1964, 11, 3) };
+
+        db.WellCastProfiles.Add(profile1);
+        db.WellCastProfiles.Add(profile2);
+        db.WellCastProfiles.Add(profile3);
+        db.WellCastProfiles.Add(profile4);
+        db.SaveChanges();
+
+
+        var conditionProfile1 = new ConditionProfile { ConditionID = condition1.ID, ProfileID = profile1.ID };
+        var conditionProfile2 = new ConditionProfile { ConditionID = condition1.ID, ProfileID = profile2.ID };
+        var conditionProfile3 = new ConditionProfile { ConditionID = condition2.ID, ProfileID = profile3.ID };
+        var conditionProfile4 = new ConditionProfile { ConditionID = condition2.ID, ProfileID = profile4.ID };
+        var conditionProfile5 = new ConditionProfile { ConditionID = condition2.ID, ProfileID = profile1.ID };
+        var conditionProfile6 = new ConditionProfile { ConditionID = condition1.ID, ProfileID = profile3.ID };
+
+        db.WellCastConditionProfiles.Add(conditionProfile1);
+        db.WellCastConditionProfiles.Add(conditionProfile2);
+        db.WellCastConditionProfiles.Add(conditionProfile3);
+        db.WellCastConditionProfiles.Add(conditionProfile4);
+        db.WellCastConditionProfiles.Add(conditionProfile5);
+        db.WellCastConditionProfiles.Add(conditionProfile6);
+        db.SaveChanges();
 
 
     }

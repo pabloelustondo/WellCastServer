@@ -17,6 +17,7 @@ namespace WellCastServer.Controllers
             ViewBag.symptomCategories = db.WellCastSymptomCategories.ToList();
             ViewBag.symptoms = db.WellCastSymptoms.ToList();
             ViewBag.locations = db.WellCastLocations.ToList();
+            ViewBag.profiles = db.WellCastProfiles.ToList();
             return View();
         }
 
