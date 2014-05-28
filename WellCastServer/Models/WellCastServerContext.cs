@@ -25,5 +25,9 @@ namespace WellCastServer.Models
 
         public DbSet<ConditionSymptom> WellCastConditionSymptoms { get; set; }
 
+        public DbSet<WellCastLog> WellCastLogs { get; set; }
+
+        public DbSet<Location> WellCastLocations { get; set; }
+
     }
 }

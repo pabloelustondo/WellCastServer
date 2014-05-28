@@ -186,6 +186,9 @@
     <Compile Include="Controllers\ConditionsController.cs" />
     <Compile Include="Controllers\ConditionSymptomController.cs" />
     <Compile Include="Controllers\ConditionSymptomsController.cs" />
+    <Compile Include="Controllers\LocationController.cs" />
+    <Compile Include="Controllers\LocationsController.cs" />
+    <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Controllers\MetaDefinitionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SymptomCategoriesController.cs" />
@@ -200,6 +203,8 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\DatabaseContextInitializer.cs" />
     <Compile Include="Models\WellCastEnvelope.cs" />
+    <Compile Include="Models\WellCastLocation.cs" />
+    <Compile Include="Models\WellCastLog.cs" />
     <Compile Include="Models\WellCastWellCastRelation.cs" />
     <Compile Include="Models\WellCastWellCastEntity.cs" />
     <Compile Include="Models\WellCastCondition.cs" />
@@ -342,6 +347,11 @@
     <Content Include="Views\SymptomCategory\Edit.cshtml" />
     <Content Include="Views\SymptomCategory\Delete.cshtml" />
     <Content Include="Views\MetaDefinitions\ShowMetaDefinitions.cshtml" />
+    <Content Include="Views\Location\Index.cshtml" />
+    <Content Include="Views\Location\Details.cshtml" />
+    <Content Include="Views\Location\Create.cshtml" />
+    <Content Include="Views\Location\Edit.cshtml" />
+    <Content Include="Views\Location\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

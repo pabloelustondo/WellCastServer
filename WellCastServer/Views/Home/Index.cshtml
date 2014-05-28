@@ -38,6 +38,19 @@
         </td>
     </tr> 
 
+    <tr>
+        <td>
+            <a href="./api/Locations">GET: /api/Locations</a>
+        </td>
+        <td>
+            @{
+
+            Guid firstLocation = ViewBag.locations[0].ID;
+        }
+        <a href="./api/Locations/@firstLocation.ToString()">GET: /api/Locations/@firstLocation.ToString()</a>
+    </td>
+</tr> 
+
 </table>
 
 <h1>Sample Error Conditions</h1>

@@ -51,6 +51,32 @@ namespace WellCastServer.Models
         db.WellCastConditionSymptoms.Add(conditionSymptom6);
         db.SaveChanges();
 
+
+        var location1 = new Location { Name = "Location1", Description = "Location1" };
+        var location2 = new Location { Name = "Location2", Description = "Location2" };
+
+        location1.Name = "CN Tower";
+        location1.Description = "CN Tower 1 Front St W";
+        location1.lat = 43.642811;
+        location1.lon = -79.387046;
+        location1.y = 133;
+        location1.x = 241;
+
+
+        location2.Name = "Vancouver";
+        location2.Description = "Queen Elizabeth Park 4600 Cambie St, Vancouver, BC V5Y 2M9";
+        location2.lat = 49.24073;
+        location2.lon = -123.113261;
+        location2.y = 143;
+        location2.x = 138;
+
+
+        db.WellCastLocations.Add(location1);
+        db.WellCastLocations.Add(location2);
+        db.SaveChanges();
+
+
+
     }
     }
 }
