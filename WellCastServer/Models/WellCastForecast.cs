@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -18,7 +19,7 @@ namespace WellCastServer.Models
         public virtual Location Location { get; set; }
 
         [Newtonsoft.Json.JsonIgnore]
-        public virtual ICollection<Location> ConditionForecasts { get; set; }
+        public virtual ICollection<ConditionForecast> ConditionForecasts { get; set; }
 
         public DateTime Date { get; set; }
                [Newtonsoft.Json.JsonIgnore]
@@ -48,9 +49,26 @@ namespace WellCastServer.Models
                [Newtonsoft.Json.JsonIgnore]
         public int ReportDay5 { get; set; }
 
+        [NotMapped]
         public virtual List<Report> Reports { 
             get{
-                return new List<Report>();            
+
+                var reports = new List<Report>();
+                var report0 = new Report();
+
+                report0.Date = Date;
+                report0.Risk = RiskDay0;
+                report0.conditionReports = new List<ConditionReport>();
+                foreach (var conditionForecast in ConditionForecasts)
+                {
+                    var conditionReport = new ConditionReport();
+                    conditionReport.ConditionID = (Guid) conditionForecast.ConditionID;
+                    conditionReport.Risk = conditionForecast.RiskDay0;
+                    report0.conditionReports.Add(conditionReport);
+                }
+
+                reports.Add(report0);
+                return reports;            
             }       
         }
 
