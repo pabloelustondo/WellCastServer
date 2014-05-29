@@ -33,5 +33,7 @@ namespace WellCastServer.Models
 
         public DbSet<Profile> WellCastProfiles { get; set; }
 
+        public DbSet<User> Users { get; set; }
+
     }
 }

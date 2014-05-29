@@ -1,4 +1,4 @@
-﻿@model WellCastServer.Models.Profile
+﻿@model WellCastServer.Models.User
 
 @{
     ViewBag.Title = "Details";
@@ -7,21 +7,7 @@
 <h2>Details</h2>
 
 <fieldset>
-    <legend>Profile</legend>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.User.Name)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.User.Name)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Age)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Age)
-    </div>
+    <legend>User</legend>
 
     <div class="display-label">
          @Html.DisplayNameFor(model => model.Name)

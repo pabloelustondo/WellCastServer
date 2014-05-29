@@ -1,4 +1,4 @@
-﻿@model WellCastServer.Models.Profile
+﻿@model WellCastServer.Models.User
 
 @{
     ViewBag.Title = "Create";
@@ -11,23 +11,7 @@
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>Profile</legend>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.UserID, "User")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("UserID", String.Empty)
-            @Html.ValidationMessageFor(model => model.UserID)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Age)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Age)
-            @Html.ValidationMessageFor(model => model.Age)
-        </div>
+        <legend>User</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Name)

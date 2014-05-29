@@ -9,113 +9,108 @@ using WellCastServer.Models;
 
 namespace WellCastServer.Controllers
 {
-    public class ProfileController : Controller
+    public class UserController : Controller
     {
         private WellCastServerContext db = new WellCastServerContext();
 
         //
-        // GET: /Profile/
+        // GET: /User/
 
         public ActionResult Index()
         {
-            var wellcastprofiles = db.WellCastProfiles.Include(p => p.User);
-            return View(wellcastprofiles.ToList());
+            return View(db.Users.ToList());
         }
 
         //
-        // GET: /Profile/Details/5
+        // GET: /User/Details/5
 
         public ActionResult Details(Guid id)
         {
-            Profile profile = db.WellCastProfiles.Find(id);
-            if (profile == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(profile);
+            return View(user);
         }
 
         //
-        // GET: /Profile/Create
+        // GET: /User/Create
 
         public ActionResult Create()
         {
-            ViewBag.UserID = new SelectList(db.Users, "ID", "Name");
             return View();
         }
 
         //
-        // POST: /Profile/Create
+        // POST: /User/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Profile profile)
+        public ActionResult Create(User user)
         {
             if (ModelState.IsValid)
             {
-                profile.ID = Guid.NewGuid();
-                db.WellCastProfiles.Add(profile);
+                user.ID = Guid.NewGuid();
+                db.Users.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UserID = new SelectList(db.Users, "ID", "Name", profile.UserID);
-            return View(profile);
+            return View(user);
         }
 
         //
-        // GET: /Profile/Edit/5
+        // GET: /User/Edit/5
 
         public ActionResult Edit(Guid id)
         {
-            Profile profile = db.WellCastProfiles.Find(id);
-            if (profile == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.UserID = new SelectList(db.Users, "ID", "Name", profile.UserID);
-            return View(profile);
+            return View(user);
         }
 
         //
-        // POST: /Profile/Edit/5
+        // POST: /User/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Profile profile)
+        public ActionResult Edit(User user)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(profile).State = EntityState.Modified;
+                db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UserID = new SelectList(db.Users, "ID", "Name", profile.UserID);
-            return View(profile);
+            return View(user);
         }
 
         //
-        // GET: /Profile/Delete/5
+        // GET: /User/Delete/5
 
         public ActionResult Delete(Guid id)
         {
-            Profile profile = db.WellCastProfiles.Find(id);
-            if (profile == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(profile);
+            return View(user);
         }
 
         //
-        // POST: /Profile/Delete/5
+        // POST: /User/Delete/5
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Profile profile = db.WellCastProfiles.Find(id);
-            db.WellCastProfiles.Remove(profile);
+            User user = db.Users.Find(id);
+            db.Users.Remove(user);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -14,6 +14,14 @@
         <legend>Location</legend>
 
         <div class="editor-label">
+            @Html.LabelFor(model => model.UserID, "User")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("UserID", String.Empty)
+            @Html.ValidationMessageFor(model => model.UserID)
+        </div>
+
+        <div class="editor-label">
             @Html.LabelFor(model => model.lat)
         </div>
         <div class="editor-field">

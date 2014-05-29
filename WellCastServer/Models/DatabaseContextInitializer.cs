@@ -52,9 +52,20 @@ namespace WellCastServer.Models
         db.SaveChanges();
 
 
+
+        var user1 = new User { Name = "User1"};
+        var user2 = new User { Name = "User2"};
+
+        db.Users.Add(user1);
+        db.Users.Add(user2);
+
+        db.SaveChanges();
+
         var location1 = new Location { Name = "Location1", Description = "Location1" };
         var location2 = new Location { Name = "Location2", Description = "Location2" };
+        var location3 = new Location { Name = "Location3", Description = "Location3" };
 
+        location1.UserID = user1.ID;
         location1.Name = "CN Tower";
         location1.Description = "CN Tower 1 Front St W";
         location1.lat = 43.642811;
@@ -63,6 +74,7 @@ namespace WellCastServer.Models
         location1.x = 241;
 
 
+        location2.UserID = user2.ID;
         location2.Name = "Vancouver";
         location2.Description = "Queen Elizabeth Park 4600 Cambie St, Vancouver, BC V5Y 2M9";
         location2.lat = 49.24073;
@@ -70,15 +82,23 @@ namespace WellCastServer.Models
         location2.y = 143;
         location2.x = 138;
 
+        location3.UserID = user1.ID;
+        location3.Name = "Vancouver2";
+        location3.Description = "Queen Elizabeth Park 4600 Cambie St, Vancouver, BC V5Y 2M9";
+        location3.lat = 49.24073;
+        location3.lon = -123.113261;
+        location3.y = 143;
+        location3.x = 138;
+
 
         db.WellCastLocations.Add(location1);
         db.WellCastLocations.Add(location2);
         db.SaveChanges();
 
-        var profile1 = new Profile { Name = "Profile1", Description = "Profile1", Gender = WellCastGender.Male, DOB = new DateTime(1964, 11, 3) };
-        var profile2 = new Profile { Name = "Profile2", Description = "Profile2", Gender = WellCastGender.Male, DOB = new DateTime(1964, 11, 3) };
-        var profile3 = new Profile { Name = "Profile3", Description = "Profile3", Gender = WellCastGender.Male, DOB = new DateTime(1964, 11, 3) };
-        var profile4 = new Profile { Name = "Profile4", Description = "Profile4", Gender = WellCastGender.Male, DOB = new DateTime(1964, 11, 3) };
+        var profile1 = new Profile { UserID = user1.ID, Name = "Profile1", Description = "Profile1", Gender = WellCastGender.Male, Age = 46 };
+        var profile2 = new Profile { UserID = user1.ID, Name = "Profile2", Description = "Profile2", Gender = WellCastGender.Male, Age = 35 };
+        var profile3 = new Profile { UserID = user2.ID, Name = "Profile3", Description = "Profile3", Gender = WellCastGender.Female, Age = 23 };
+        var profile4 = new Profile { UserID = user2.ID, Name = "Profile4", Description = "Profile4", Gender = WellCastGender.Female, Age = 18 };
 
         db.WellCastProfiles.Add(profile1);
         db.WellCastProfiles.Add(profile2);

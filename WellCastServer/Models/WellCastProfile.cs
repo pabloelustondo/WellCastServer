@@ -11,16 +11,13 @@ namespace WellCastServer.Models
     }
     public class Profile: WellCastEntity
     {
-        /*
-_id: 1,
-name: “Nick”,
-gender: “male”,
-age: 44,
-	conditions: [ 1, 5 ]
-         */
+        public Guid UserID { get; set; }
+
+        [Newtonsoft.Json.JsonIgnore]
+        public virtual User User { get; set; }
 
         public WellCastGender Gender { get; set; }
-        public DateTime DOB { get; set; }
+        public int Age { get; set; }
 
         public virtual List<Guid> ConditionIDs
         {

@@ -198,6 +198,7 @@
     <Compile Include="Controllers\SymptomCategoryController.cs" />
     <Compile Include="Controllers\SymptomController.cs" />
     <Compile Include="Controllers\SymptomsController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -210,6 +211,7 @@
     <Compile Include="Models\WellCastLocation.cs" />
     <Compile Include="Models\WellCastLog.cs" />
     <Compile Include="Models\WellCastProfile.cs" />
+    <Compile Include="Models\WellCastUser.cs" />
     <Compile Include="Models\WellCastWellCastRelation.cs" />
     <Compile Include="Models\WellCastWellCastEntity.cs" />
     <Compile Include="Models\WellCastCondition.cs" />
@@ -367,6 +369,11 @@
     <Content Include="Views\Profile\Create.cshtml" />
     <Content Include="Views\Profile\Edit.cshtml" />
     <Content Include="Views\Profile\Delete.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

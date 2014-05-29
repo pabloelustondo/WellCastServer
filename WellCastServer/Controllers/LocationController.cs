@@ -18,7 +18,8 @@ namespace WellCastServer.Controllers
 
         public ActionResult Index()
         {
-            return View(db.WellCastLocations.ToList());
+            var wellcastlocations = db.WellCastLocations.Include(l => l.User);
+            return View(wellcastlocations.ToList());
         }
 
         //
@@ -39,6 +40,7 @@ namespace WellCastServer.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.UserID = new SelectList(db.Users, "ID", "Name");
             return View();
         }
 
@@ -57,6 +59,7 @@ namespace WellCastServer.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.UserID = new SelectList(db.Users, "ID", "Name", location.UserID);
             return View(location);
         }
 
@@ -70,6 +73,7 @@ namespace WellCastServer.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.UserID = new SelectList(db.Users, "ID", "Name", location.UserID);
             return View(location);
         }
 
@@ -86,6 +90,7 @@ namespace WellCastServer.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.UserID = new SelectList(db.Users, "ID", "Name", location.UserID);
             return View(location);
         }
 

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WellCastServer.Models.Profile>
+﻿@model IEnumerable<WellCastServer.Models.User>
 
 @{
     ViewBag.Title = "Index";
@@ -12,12 +12,6 @@
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.User.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Age)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
@@ -28,12 +22,6 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Age)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>

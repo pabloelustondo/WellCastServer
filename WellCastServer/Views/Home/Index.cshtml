@@ -38,32 +38,6 @@
         </td>
     </tr> 
 
-    <tr>
-        <td>
-            <a href="./api/Locations">GET: /api/Locations</a>
-        </td>
-        <td>
-            @{
-
-                Guid firstLocation = ViewBag.locations[0].ID;
-            }
-            <a href="./api/Locations/@firstLocation.ToString()">GET: /api/Locations/@firstLocation.ToString()</a>
-        </td>
-
-    <tr>
-        <td>
-            <a href="./api/Profiles">GET: /api/Profiles</a>
-        </td>
-        <td>
-            @{
-
-                Guid firstProfile = ViewBag.profiles[0].ID;
-            }
-            <a href="./api/Profiles/@firstProfile.ToString()">GET: /api/Profiles/@firstProfile.ToString()</a>
-        </td>
-
-    </tr> 
-
 </table>
 
 <h1>Sample Error Conditions</h1>
