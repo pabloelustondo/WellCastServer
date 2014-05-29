@@ -189,6 +189,7 @@
     <Compile Include="Controllers\ConditionSymptomController.cs" />
     <Compile Include="Controllers\ConditionSymptomsController.cs" />
     <Compile Include="Controllers\ForecastController.cs" />
+    <Compile Include="Controllers\ForecastsController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\LogController.cs" />
@@ -211,6 +212,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\ConditionReport.cs" />
     <Compile Include="Models\DatabaseContextInitializer.cs" />
     <Compile Include="Models\WellCastForecast.cs" />
     <Compile Include="Models\WellCastConditionForecast.cs" />
@@ -220,6 +222,7 @@
     <Compile Include="Models\WellCastLocation.cs" />
     <Compile Include="Models\WellCastLog.cs" />
     <Compile Include="Models\WellCastProfile.cs" />
+    <Compile Include="Models\WellCastReport.cs" />
     <Compile Include="Models\WellCastUser.cs" />
     <Compile Include="Models\WellCastWellCastRelation.cs" />
     <Compile Include="Models\WellCastWellCastEntity.cs" />

@@ -18,7 +18,7 @@ namespace WellCastServer.Controllers
 
         public ActionResult Index()
         {
-            var forecasts = db.WellCastForecasts.Include(f => f.Profile).Include(f => f.Location);
+            var forecasts = db.WellCastForecasts;
             return View(forecasts.ToList());
         }
 

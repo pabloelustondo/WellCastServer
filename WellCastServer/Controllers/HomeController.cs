@@ -19,6 +19,7 @@ namespace WellCastServer.Controllers
             ViewBag.locations = db.WellCastLocations.ToList();
             ViewBag.profiles = db.WellCastProfiles.ToList();
             ViewBag.users = db.WellCastUsers.ToList();
+            ViewBag.forecasts = db.WellCastForecasts.ToList();
             return View();
         }
 
