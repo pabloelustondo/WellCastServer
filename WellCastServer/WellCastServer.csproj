@@ -200,6 +200,7 @@
     <Compile Include="Controllers\SymptomController.cs" />
     <Compile Include="Controllers\SymptomsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="ForecastEngine\WellCastServerEngine.cs">
       <SubType>Code</SubType>
