@@ -56,8 +56,8 @@ namespace WellCastServer.Models
         var user1 = new User { Name = "User1"};
         var user2 = new User { Name = "User2"};
 
-        db.Users.Add(user1);
-        db.Users.Add(user2);
+        db.WellCastUsers.Add(user1);
+        db.WellCastUsers.Add(user2);
 
         db.SaveChanges();
 

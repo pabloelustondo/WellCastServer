@@ -18,7 +18,7 @@ namespace WellCastServer.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            return View(db.WellCastUsers.ToList());
         }
 
         //
@@ -26,7 +26,7 @@ namespace WellCastServer.Controllers
 
         public ActionResult Details(Guid id)
         {
-            User user = db.Users.Find(id);
+            User user = db.WellCastUsers.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -52,7 +52,7 @@ namespace WellCastServer.Controllers
             if (ModelState.IsValid)
             {
                 user.ID = Guid.NewGuid();
-                db.Users.Add(user);
+                db.WellCastUsers.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace WellCastServer.Controllers
 
         public ActionResult Edit(Guid id)
         {
-            User user = db.Users.Find(id);
+            User user = db.WellCastUsers.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -94,7 +94,7 @@ namespace WellCastServer.Controllers
 
         public ActionResult Delete(Guid id)
         {
-            User user = db.Users.Find(id);
+            User user = db.WellCastUsers.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace WellCastServer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
+            User user = db.WellCastUsers.Find(id);
+            db.WellCastUsers.Remove(user);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -28,6 +28,14 @@ namespace WellCastServer.Controllers
             return View();
         }
 
+        public ActionResult calculateNewForecast()
+        {
+            WellCastServerEngine wellCastServerEngine = new WellCastServerEngine();
+            ViewBag.message = wellCastServerEngine.calculateNewForecast();
+
+            return View();
+        }
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

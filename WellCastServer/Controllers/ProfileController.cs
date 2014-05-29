@@ -40,7 +40,7 @@ namespace WellCastServer.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.UserID = new SelectList(db.Users, "ID", "Name");
+            ViewBag.UserID = new SelectList(db.WellCastUsers, "ID", "Name");
             return View();
         }
 
@@ -59,7 +59,7 @@ namespace WellCastServer.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UserID = new SelectList(db.Users, "ID", "Name", profile.UserID);
+            ViewBag.UserID = new SelectList(db.WellCastUsers, "ID", "Name", profile.UserID);
             return View(profile);
         }
 
@@ -73,7 +73,7 @@ namespace WellCastServer.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.UserID = new SelectList(db.Users, "ID", "Name", profile.UserID);
+            ViewBag.UserID = new SelectList(db.WellCastUsers, "ID", "Name", profile.UserID);
             return View(profile);
         }
 
@@ -90,7 +90,7 @@ namespace WellCastServer.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UserID = new SelectList(db.Users, "ID", "Name", profile.UserID);
+            ViewBag.UserID = new SelectList(db.WellCastUsers, "ID", "Name", profile.UserID);
             return View(profile);
         }
 

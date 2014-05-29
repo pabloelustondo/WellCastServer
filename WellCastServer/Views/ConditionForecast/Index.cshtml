@@ -1,0 +1,87 @@
+﻿@model IEnumerable<WellCastServer.Models.ConditionForecast>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Profile.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Condition.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RiskDay0)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RiskDay1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RiskDay2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RiskDay3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RiskDay4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RiskDay5)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Profile.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Condition.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RiskDay0)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RiskDay1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RiskDay2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RiskDay3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RiskDay4)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RiskDay5)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

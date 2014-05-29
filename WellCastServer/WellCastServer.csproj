@@ -183,6 +183,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ConditionController.cs" />
+    <Compile Include="Controllers\ConditionForecastController.cs" />
     <Compile Include="Controllers\ConditionProfileController.cs" />
     <Compile Include="Controllers\ConditionsController.cs" />
     <Compile Include="Controllers\ConditionSymptomController.cs" />
@@ -200,14 +201,19 @@
     <Compile Include="Controllers\SymptomsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="ForecastEngine\WellCastServerEngine.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\DatabaseContextInitializer.cs" />
+    <Compile Include="Models\WellCastConditionForecast.cs" />
     <Compile Include="Models\WellCastConditionProfile.cs" />
     <Compile Include="Models\WellCastEnvelope.cs" />
+    <Compile Include="Models\WellCastForecastTime.cs" />
     <Compile Include="Models\WellCastLocation.cs" />
     <Compile Include="Models\WellCastLog.cs" />
     <Compile Include="Models\WellCastProfile.cs" />
@@ -374,6 +380,12 @@
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\ConditionForecast\Index.cshtml" />
+    <Content Include="Views\ConditionForecast\Details.cshtml" />
+    <Content Include="Views\ConditionForecast\Create.cshtml" />
+    <Content Include="Views\ConditionForecast\Edit.cshtml" />
+    <Content Include="Views\ConditionForecast\Delete.cshtml" />
+    <Content Include="Views\Home\calculateNewForecast.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
