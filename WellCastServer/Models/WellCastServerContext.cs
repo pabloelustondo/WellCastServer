@@ -37,5 +37,7 @@ namespace WellCastServer.Models
 
         public DbSet<ConditionForecast> WellCastConditionForecasts { get; set; }
 
+        public DbSet<Forecast> WellCastForecasts { get; set; }
+
     }
 }

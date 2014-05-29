@@ -1,0 +1,120 @@
+﻿@model WellCastServer.Models.Forecast
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Forecast</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Profile.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Profile.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Location.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Location.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Date)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RiskDay0)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RiskDay0)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RiskDay1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RiskDay1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RiskDay2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RiskDay2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RiskDay3)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RiskDay3)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RiskDay4)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RiskDay4)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RiskDay5)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RiskDay5)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ReportDay0)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReportDay0)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ReportDay1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReportDay1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ReportDay2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReportDay2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ReportDay3)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReportDay3)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ReportDay4)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReportDay4)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ReportDay5)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReportDay5)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

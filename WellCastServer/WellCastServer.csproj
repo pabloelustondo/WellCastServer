@@ -188,6 +188,7 @@
     <Compile Include="Controllers\ConditionsController.cs" />
     <Compile Include="Controllers\ConditionSymptomController.cs" />
     <Compile Include="Controllers\ConditionSymptomsController.cs" />
+    <Compile Include="Controllers\ForecastController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\LogController.cs" />
@@ -211,6 +212,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\DatabaseContextInitializer.cs" />
+    <Compile Include="Models\WellCastForecast.cs" />
     <Compile Include="Models\WellCastConditionForecast.cs" />
     <Compile Include="Models\WellCastConditionProfile.cs" />
     <Compile Include="Models\WellCastEnvelope.cs" />
@@ -387,6 +389,11 @@
     <Content Include="Views\ConditionForecast\Edit.cshtml" />
     <Content Include="Views\ConditionForecast\Delete.cshtml" />
     <Content Include="Views\Home\calculateNewForecast.cshtml" />
+    <Content Include="Views\Forecast\Index.cshtml" />
+    <Content Include="Views\Forecast\Details.cshtml" />
+    <Content Include="Views\Forecast\Create.cshtml" />
+    <Content Include="Views\Forecast\Edit.cshtml" />
+    <Content Include="Views\Forecast\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

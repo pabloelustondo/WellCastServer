@@ -57,6 +57,34 @@ namespace WellCastServer
                     }               
                 }
             }
+
+
+            foreach (var profile in profiles)
+            {
+                foreach (var location in locations)
+                {
+
+                        Forecast forecast = new Forecast();
+
+                        forecast.ProfileID = profile.ID;
+                        forecast.LocationID = location.ID;
+                        forecast.Date = forecastingDate;
+                        forecast.ID = Guid.NewGuid();
+
+                        //now the ramdom thing
+                        Random random = new Random();
+                        forecast.RiskDay0 = random.Next(0, 6);
+                        forecast.RiskDay1 = random.Next(0, 6);
+                        forecast.RiskDay2 = random.Next(0, 6);
+                        forecast.RiskDay3 = random.Next(0, 6);
+                        forecast.RiskDay4 = random.Next(0, 6);
+                        forecast.RiskDay5 = random.Next(0, 6);
+
+                        db.WellCastForecasts.Add(forecast);
+                        db.SaveChanges();
+
+                }
+            }
             returnMessage = "Forecast where calculated for date-hour: " + forecastingDate;
             return returnMessage;
         }
