@@ -10,6 +10,19 @@ namespace WellCastServer
     {
         private WellCastServerContext db = new WellCastServerContext();
 
+        public string deleteForecast() {
+
+
+            foreach (var cf in db.WellCastConditionForecasts) {
+                            db.WellCastConditionForecasts.Remove(cf);            
+            }
+            foreach (var f in db.WellCastForecasts) {
+                    db.WellCastForecasts.Remove(f);            
+            }
+            db.SaveChanges();
+            return "All existing forecast or condition forecasts where removed (if any)";
+        }
+
         public string calculateNewForecast(){
           //this process will calculate forecast for all profiles, locations and conditions
           //using corresponding the year, month, day and time slot
@@ -53,8 +66,12 @@ namespace WellCastServer
                         forecast.RiskDay4 = random.Next(0, 6);
                         forecast.RiskDay5 = random.Next(0, 6);
 
-                        db.WellCastForecasts.Add(forecast);
-                        db.SaveChanges();
+                        forecast.ReportDay0 = "";
+                        forecast.ReportDay1 = "";
+                        forecast.ReportDay2 = "";
+                        forecast.ReportDay3 = "";
+                        forecast.ReportDay4 = "";
+                        forecast.ReportDay5 = "";
 
                         foreach (var condition in conditions)
                         {
@@ -68,16 +85,32 @@ namespace WellCastServer
 
                             //now the ramdom thing
                             conditionforecast.RiskDay0 = random.Next(0, 6);
+                            if (conditionforecast.RiskDay0 > 2) forecast.ReportDay0 += "risk of " + condition.Name;
                             conditionforecast.RiskDay1 = random.Next(0, 6);
+                            if (conditionforecast.RiskDay1 > 2) forecast.ReportDay1 += "risk of " + condition.Name;
                             conditionforecast.RiskDay2 = random.Next(0, 6);
+                            if (conditionforecast.RiskDay2 > 2) forecast.ReportDay2 += "risk of " + condition.Name;                
                             conditionforecast.RiskDay3 = random.Next(0, 6);
+                            if (conditionforecast.RiskDay3 > 2) forecast.ReportDay3 += "risk of " + condition.Name;      
                             conditionforecast.RiskDay4 = random.Next(0, 6);
+                            if (conditionforecast.RiskDay4 > 2) forecast.ReportDay4 += "risk of " + condition.Name;
                             conditionforecast.RiskDay5 = random.Next(0, 6);
+                            if (conditionforecast.RiskDay5 > 2) forecast.ReportDay5 += "risk of " + condition.Name;
+
 
                             db.WellCastConditionForecasts.Add(conditionforecast);
-                            db.SaveChanges();
 
-                        }             
+                        }
+
+                        if (forecast.ReportDay0 == "") forecast.ReportDay0 = "no reported risk today";
+                        if (forecast.ReportDay1 == "") forecast.ReportDay1 = "no reported risk today";
+                        if (forecast.ReportDay2 == "") forecast.ReportDay2 = "no reported risk today";
+                        if (forecast.ReportDay3 == "") forecast.ReportDay3 = "no reported risk today";
+                        if (forecast.ReportDay4 == "") forecast.ReportDay4 = "no reported risk today";
+                        if (forecast.ReportDay5 == "") forecast.ReportDay5 = "no reported risk today";
+
+                        db.WellCastForecasts.Add(forecast);
+                        db.SaveChanges();
                 }
             }
             returnMessage = "Forecast where calculated for date-hour: " + forecastingDate;

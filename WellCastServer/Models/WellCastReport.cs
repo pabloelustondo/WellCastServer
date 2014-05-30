@@ -12,7 +12,7 @@ namespace WellCastServer.Models
 
         public DateTime Date { get; set; }
         public int Risk { get; set; }
-        public int ReportNote { get; set; }
+        public string ReportNote { get; set; }
 
         public List<ConditionReport> conditionReports { get; set; }
     }

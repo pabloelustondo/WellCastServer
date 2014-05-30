@@ -30,6 +30,14 @@ namespace WellCastServer.Controllers
             return View();
         }
 
+        public ActionResult deleteForecast()
+        {
+            WellCastServerEngine wellCastServerEngine = new WellCastServerEngine();
+            ViewBag.message = wellCastServerEngine.deleteForecast();
+
+            return View();
+        }
+
         public ActionResult calculateNewForecast()
         {
             WellCastServerEngine wellCastServerEngine = new WellCastServerEngine();

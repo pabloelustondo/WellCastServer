@@ -212,7 +212,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\ConditionReport.cs" />
+    <Compile Include="Models\WellCastConditionReport.cs" />
     <Compile Include="Models\DatabaseContextInitializer.cs" />
     <Compile Include="Models\WellCastForecast.cs" />
     <Compile Include="Models\WellCastConditionForecast.cs" />
@@ -397,6 +397,7 @@
     <Content Include="Views\Forecast\Create.cshtml" />
     <Content Include="Views\Forecast\Edit.cshtml" />
     <Content Include="Views\Forecast\Delete.cshtml" />
+    <Content Include="Views\Home\deleteForecast.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

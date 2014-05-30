@@ -82,8 +82,9 @@ namespace WellCastServer.Models
                 for (int d = 0; d < 6; d++) { 
                 var report = new Report();
 
-                report.Date = Date;
+                report.Date = Date.AddDays(d);
                 report.Risk = RiskDay[d];
+                report.ReportNote = ReportDay[d];
                 report.conditionReports = new List<ConditionReport>();
                 foreach (var conditionForecast in ConditionForecasts)
                 {
