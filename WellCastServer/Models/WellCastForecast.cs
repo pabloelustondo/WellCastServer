@@ -50,6 +50,7 @@ namespace WellCastServer.Models
         public string ReportDay5 { get; set; }
 
            [NotMapped]
+           [Newtonsoft.Json.JsonIgnore]
         public virtual List<string> ReportDay { get{
             var reportDay = new List<string>();
             reportDay.Add(ReportDay0);
@@ -61,6 +62,7 @@ namespace WellCastServer.Models
             return reportDay;
         }}
            [NotMapped]
+           [Newtonsoft.Json.JsonIgnore]
         public virtual List<int> RiskDay { get {
             var riskDay = new List<int>();
             riskDay.Add(RiskDay0);

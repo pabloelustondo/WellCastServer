@@ -41,30 +41,21 @@
     </tr> 
 
     <tr>
+        <td><p>All Forecasts (impractical call when system in production)</p>
+            <a href="./api/Forecasts"> GET: /api/Forecasts </a>
+        </td>
         <td>
             @{
 
-                Guid firstProfile = ViewBag.profiles[0].ID;
+                Guid firstUserId = Guid.NewGuid();
+                try
+                {
+                    firstUserId = ViewBag.users[0].ID;
+                }
+                catch (Exception) { }
             }
-            <a href="./api/Profiles/@firstProfile.ToString()">GET: /api/Profiles/@firstProfile.ToString()</a>
-        </td>
-
-    </tr> 
-
-    <tr>
-        <td>
-            @{
-
-                Guid firstUser = ViewBag.users[0].ID;
-            }
-            <a href="./api/Users/@firstUser.ToString()">GET: /api/Users/@firstUser.ToString()</a>
-        </td>
-
-    </tr> 
-
-    <tr>
-        <td>
-            <a href="./api/Forecasts">GET: /api/Forecasts</a>
+            <p>All Forecasts for one userId</p>
+            <a href="./api/Forecasts">GET: /api/Forecasts?userid=@firstUserId.ToString()</a>
         </td>
         <td>
             @{
@@ -76,6 +67,7 @@
                 }
                 catch (Exception) { }
             }
+            <p>One specific forecast using the Guid</p>
             <a href="./api/Forecasts/@firstForecast.ToString()">GET: /api/Forecasts/@firstForecast.ToString()</a>
         </td>
 
@@ -88,6 +80,27 @@
         <td>
             <a href="./api/Profiles">GET: /api/Profiles</a>
         </td>
+    </tr> 
+    <tr>
+        <td>
+            @{
+
+                Guid firstProfile = ViewBag.profiles[0].ID;
+            }
+            <a href="./api/Profiles/@firstProfile.ToString()">GET: /api/Profiles/@firstProfile.ToString()</a>
+        </td>
+
+    </tr>
+
+    <tr>
+        <td>
+            @{
+
+                Guid firstUser = ViewBag.users[0].ID;
+            }
+            <a href="./api/Users/@firstUser.ToString()">GET: /api/Users/@firstUser.ToString()</a>
+        </td>
+
     </tr> 
     <tr>
         <td>

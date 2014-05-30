@@ -59,6 +59,42 @@ namespace WellCastServer.Controllers
             return envelope;
         }
 
+        // GET api/Forecasts/5
+        public WellCastEnvelope<List<Forecast>> GetForecasts(String userid)
+        {
+            WellCastEnvelope<List<Forecast>> envelope;
+            try
+            {
+                Guid UserIdGuid = new Guid(userid);
+                ; List<Forecast> conditions = db.WellCastForecasts.Where(f => f.Profile.UserID == UserIdGuid).ToList();
+                envelope = new WellCastEnvelope<List<Forecast>>(conditions);
+
+                if (conditions == null)
+                {
+                    envelope.meta.status = WellCastStatusList.NonExistingId.code;
+                }
+
+            }
+            catch (Exception e)
+            {
+                envelope = new WellCastEnvelope<List<Forecast>>(null);
+                if (e.Message.Contains("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"))
+                {
+
+                    envelope.meta.status = WellCastStatusList.InvalidId.code;
+                    envelope.meta.message = e.Message;
+
+                }
+                else
+                {
+                    envelope.meta.status = WellCastStatusList.Exception.code;
+                    envelope.meta.message = e.Message;
+                }
+            }
+            return envelope;
+        }
+
+
         // PUT api/Forecasts/5
         public HttpResponseMessage PutForecast(Guid id, Forecast forecast)
         {
