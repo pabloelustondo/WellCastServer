@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="WellCastServer.Models.Condition" Collapsed="true">
+    <Position X="0.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\WellCastCondition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WellCastServer.Models.ConditionForecast">
+    <Position X="6" Y="5.75" Width="1.5" />
+    <AssociationLine Name="Condition" Type="WellCastServer.Models.Condition">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-4.954" Y="4.224" Height="0.182" Width="0.974" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Location" Type="WellCastServer.Models.Location">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.098" Y="2.056" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Profile" Type="WellCastServer.Models.Profile">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="2.194" Y="-0.305" Height="0.182" Width="0.72" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACACEAAAAAAJAAAAQCAQIBAABBBAAAgAAggA=</HashCode>
+      <FileName>Models\WellCastConditionForecast.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Condition" />
+      <Property Name="Forecast" />
+      <Property Name="Location" />
+      <Property Name="Profile" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="WellCastServer.Models.ConditionProfile">
+    <Position X="3.75" Y="6" Width="1.5" />
+    <AssociationLine Name="Condition" Type="WellCastServer.Models.Condition">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-2.578" Y="2.852" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Profile" Type="WellCastServer.Models.Profile">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="4.443" Y="-0.744" Height="0.182" Width="0.72" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAABAAAAAAAAAAAAAABAAAAAAgAA=</HashCode>
+      <FileName>Models\WellCastConditionProfile.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Condition" />
+      <Property Name="Profile" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="WellCastServer.Models.ConditionReport">
+    <Position X="12" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAgAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\WellCastConditionReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WellCastServer.Models.ConditionSymptom">
+    <Position X="1.25" Y="5.5" Width="1.5" />
+    <AssociationLine Name="Condition" Type="WellCastServer.Models.Condition">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.871" Y="1.352" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Symptom" Type="WellCastServer.Models.Symptom">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.928" Y="1.364" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQCAAAAAAABAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\WellCastConditionSymptom.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Condition" />
+      <Property Name="Symptom" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="WellCastServer.Models.WellCastEntity">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <Members>
+      <Method Name="WellCastEntity" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAggAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\WellCastWellCastEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WellCastServer.Models.Symptom" Collapsed="true">
+    <Position X="2.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAABCEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\WellCastSymptom.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WellCastServer.Models.User" Collapsed="true">
+    <Position X="6" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgABAAIEAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Models\WellCastUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WellCastServer.Models.Forecast">
+    <Position X="10.75" Y="6.5" Width="1.5" />
+    <Members>
+      <Property Name="ReportDay2" Hidden="true" />
+      <Property Name="ReportDay3" Hidden="true" />
+      <Property Name="ReportDay4" Hidden="true" />
+      <Property Name="ReportDay5" Hidden="true" />
+      <Property Name="RiskDay2" Hidden="true" />
+      <Property Name="RiskDay3" Hidden="true" />
+      <Property Name="RiskDay4" Hidden="true" />
+      <Property Name="RiskDay5" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Location" Type="WellCastServer.Models.Location">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="2.609" Y="-3.178" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Profile" Type="WellCastServer.Models.Profile">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.087" Y="0.302" Height="0.182" Width="0.731" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>IAAAAAAACICAeQAAAAIAAAAQCAAIBAABBBAAAgAAggA=</HashCode>
+      <FileName>Models\WellCastForecast.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Location" />
+      <Property Name="Profile" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="WellCastServer.Models.Location">
+    <Position X="7.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABIAAAAAAAAAAAAAAACAgAAAAAAAAAAABgAAAAAAA=</HashCode>
+      <FileName>Models\WellCastLocation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WellCastServer.Models.Profile">
+    <Position X="9.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAACAAEBQAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\WellCastProfile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WellCastServer.Models.SymptomCategory" Collapsed="true">
+    <Position X="4.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\WellCastSymptomCategory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WellCastServer.Models.WellCastRelation" Collapsed="true">
+    <Position X="6.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\WellCastWellCastRelation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WellCastServer.Models.WellCastEntityWithKeyName">
+    <Position X="1.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Models\WellCastWellCastEntityWithKeyName.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

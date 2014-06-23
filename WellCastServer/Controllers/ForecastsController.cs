@@ -64,9 +64,10 @@ namespace WellCastServer.Controllers
         {
             WellCastEnvelope<List<Forecast>> envelope;
             try
+            
             {
                 Guid UserIdGuid = new Guid(userid);
-                ; List<Forecast> conditions = db.WellCastForecasts.Where(f => f.Profile.UserID == UserIdGuid).ToList();
+                List<Forecast> conditions = db.WellCastForecasts.Where(f => f.Profile.UserID == UserIdGuid).ToList();
                 envelope = new WellCastEnvelope<List<Forecast>>(conditions);
 
                 if (conditions == null)

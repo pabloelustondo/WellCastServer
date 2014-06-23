@@ -5,19 +5,19 @@ using System.Web;
 
 namespace WellCastServer.Models
 {
-    public class Condition: WellCastEntity
+    public class Condition: WellCastEntityWithKeyName
     {
-        public virtual List<Guid> SymptomIDs
+        public virtual List<String> SymptomKeys
         {
             get
             {
-                var _SymptomIDs = new List<Guid>();
-                if (ConditionSymptoms == null) return _SymptomIDs;
+                var _SymptomKeys = new List<String>();
+                if (ConditionSymptoms == null) return _SymptomKeys;
                 foreach (var cs in ConditionSymptoms)
                 {
-                    _SymptomIDs.Add(cs.Symptom.ID);
+                    _SymptomKeys.Add(cs.Symptom.KeyName);
                 }
-                return _SymptomIDs;
+                return _SymptomKeys;
             }
         }
 

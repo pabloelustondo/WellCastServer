@@ -5,7 +5,8 @@ using System.Web;
 
 namespace WellCastServer.Models
 {
-    public class SymptomCategory: WellCastEntityWithKeyName
+    public class WellCastEntityWithKeyName: WellCastEntity
     {
-    }
+        public string KeyName { get; set; }       
+      }
 }

@@ -210,6 +210,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406231432277_keyname.cs" />
+    <Compile Include="Migrations\201406231432277_keyname.Designer.cs">
+      <DependentUpon>201406231432277_keyname.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\WellCastConditionReport.cs" />
@@ -224,6 +228,7 @@
     <Compile Include="Models\WellCastProfile.cs" />
     <Compile Include="Models\WellCastReport.cs" />
     <Compile Include="Models\WellCastUser.cs" />
+    <Compile Include="Models\WellCastWellCastEntityWithKeyName.cs" />
     <Compile Include="Models\WellCastWellCastRelation.cs" />
     <Compile Include="Models\WellCastWellCastEntity.cs" />
     <Compile Include="Models\WellCastCondition.cs" />
@@ -234,6 +239,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Model.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -288,8 +294,10 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\WellCastServerAPI_Archictural_Ideas.JPG" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Models\WellCastModel.cd" />
     <None Include="Properties\PublishProfiles\wellcastserver.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -404,6 +412,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201406231432277_keyname.resx">
+      <DependentUpon>201406231432277_keyname.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

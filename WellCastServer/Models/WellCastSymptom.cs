@@ -7,19 +7,19 @@ using System.Web.Script.Serialization;
 namespace WellCastServer.Models
 {
 
-    public class Symptom: WellCastEntity
+    public class Symptom: WellCastEntityWithKeyName
     {
-        public virtual List<Guid> ConditionIDs
+        public virtual List<String> ConditionKeys
         {
             get
             {
-                var _ConditionIDs = new List<Guid>();
-                if (ConditionSymptoms == null) return _ConditionIDs;
+                var _ConditionKeys = new List<String>();
+                if (ConditionSymptoms == null) return _ConditionKeys;
                 foreach (var cs in ConditionSymptoms)
                 {
-                    _ConditionIDs.Add(cs.Condition.ID);
+                    _ConditionKeys.Add(cs.Condition.KeyName);
                 }
-                return _ConditionIDs;
+                return _ConditionKeys;
             }
         }
 

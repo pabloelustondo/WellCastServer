@@ -89,7 +89,7 @@ namespace WellCastServer.Models
                 foreach (var conditionForecast in ConditionForecasts)
                 {
                     var conditionReport = new ConditionReport();
-                    conditionReport.ConditionID = (Guid) conditionForecast.ConditionID;
+                    conditionReport.ConditionKey = conditionForecast.Condition.KeyName;
                     conditionReport.Risk = conditionForecast.RiskDay[d];
                     report.conditionReports.Add(conditionReport);
                 }

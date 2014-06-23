@@ -14,12 +14,17 @@ namespace WellCastServer.Models
 
         var condition1 = new Condition { Name = "Condition1", Description = "Condition1" };
         var condition2 = new Condition { Name = "Condition2", Description = "Condition2" };
+        condition1.KeyName = condition1.Name;
+        condition2.KeyName = condition2.Name;
+
         db.WellCastConditions.Add(condition1);
         db.WellCastConditions.Add(condition2);
         db.SaveChanges();
 
         var symptomCategory1 = new SymptomCategory { Name = "SymptomCategory1", Description = "SymptomCategory1" };
         var symptomCategory2 = new SymptomCategory { Name = "SymptomCategory2", Description = "SymptomCategory2" };
+        symptomCategory1.KeyName = symptomCategory1.Name;
+        symptomCategory2.KeyName = symptomCategory2.Name;
 
         db.WellCastSymptomCategories.Add(symptomCategory1);
         db.WellCastSymptomCategories.Add(symptomCategory2);
@@ -29,6 +34,11 @@ namespace WellCastServer.Models
         var symptom2 = new Symptom { Name = "Symptom2", Description = "Symptom2", SymptomCategoryID = symptomCategory1.ID };
         var symptom3 = new Symptom { Name = "Symptom3", Description = "Symptom3", SymptomCategoryID = symptomCategory2.ID };
         var symptom4 = new Symptom { Name = "Symptom4", Description = "Symptom4", SymptomCategoryID = symptomCategory2.ID };
+
+        symptom1.KeyName = symptom1.Name;
+        symptom2.KeyName = symptom2.Name;
+        symptom3.KeyName = symptom3.Name;
+        symptom4.KeyName = symptom4.Name;
      
         db.WellCastSymptoms.Add(symptom1);
         db.WellCastSymptoms.Add(symptom2);

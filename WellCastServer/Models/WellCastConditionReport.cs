@@ -9,7 +9,7 @@ namespace WellCastServer.Models
     {
         [Newtonsoft.Json.JsonIgnore]
         public int ID { get; set; }
-        public Guid ConditionID { get; set; }
+        public String ConditionKey { get; set; }
         public int Risk;
     }
 }

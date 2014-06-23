@@ -13,6 +13,14 @@
     <fieldset>
         <legend>Condition</legend>
 
+        <div class="editor-label">
+            @Html.LabelFor(model => model.KeyName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.KeyName)
+            @Html.ValidationMessageFor(model => model.KeyName)
+        </div>
+
         @Html.HiddenFor(model => model.ID)
 
         <div class="editor-label">
