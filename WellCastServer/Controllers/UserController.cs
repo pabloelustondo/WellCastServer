@@ -24,8 +24,10 @@ namespace WellCastServer.Controllers
                 User wuser = new User();
                 var muserID = muser["_id"].ToString();
                 wuser.ID = muser["_id"].ToString();
+                wuser.Name = muser["username"].ToString();
+                wusers.Add(wuser);
             }
-            return View(db.WellCastUsers.ToList());
+            return View(wusers);
         }
 
         //
