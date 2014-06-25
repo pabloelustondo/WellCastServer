@@ -40,6 +40,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\packages\mongocsharpdriver.1.9.1\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\packages\mongocsharpdriver.1.9.1\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -201,8 +207,10 @@
     <Compile Include="Controllers\SymptomCategoryController.cs" />
     <Compile Include="Controllers\SymptomController.cs" />
     <Compile Include="Controllers\SymptomsController.cs" />
+    <Compile Include="Controllers\TestMongoController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\WellCastController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="ForecastEngine\WellCastServerEngine.cs">
       <SubType>Code</SubType>
@@ -210,12 +218,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201406231432277_keyname.cs" />
-    <Compile Include="Migrations\201406231432277_keyname.Designer.cs">
-      <DependentUpon>201406231432277_keyname.cs</DependentUpon>
+    <Compile Include="Migrations\201406252113079_initial.cs" />
+    <Compile Include="Migrations\201406252113079_initial.Designer.cs">
+      <DependentUpon>201406252113079_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\MongoEntity.cs" />
+    <Compile Include="Models\MongoUser.cs" />
     <Compile Include="Models\WellCastConditionReport.cs" />
     <Compile Include="Models\DatabaseContextInitializer.cs" />
     <Compile Include="Models\WellCastForecast.cs" />
@@ -406,6 +416,8 @@
     <Content Include="Views\Forecast\Edit.cshtml" />
     <Content Include="Views\Forecast\Delete.cshtml" />
     <Content Include="Views\Home\deleteForecast.cshtml" />
+    <Content Include="Views\TestMongo\Index.cshtml" />
+    <Content Include="Views\TestMongo\TestRealMongo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -414,8 +426,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201406231432277_keyname.resx">
-      <DependentUpon>201406231432277_keyname.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201406252113079_initial.resx">
+      <DependentUpon>201406252113079_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -59,7 +59,7 @@ namespace WellCastServer.Controllers
             return envelope;
         }
         // PUT api/Profiles/5
-        public HttpResponseMessage PutProfile(Guid id, Profile profile)
+        public HttpResponseMessage PutProfile(String id, Profile profile)
         {
             if (!ModelState.IsValid)
             {

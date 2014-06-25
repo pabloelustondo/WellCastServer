@@ -51,7 +51,7 @@ namespace WellCastServer.Controllers
         {
             if (ModelState.IsValid)
             {
-                condition.ID = Guid.NewGuid();
+                condition.ID = condition.Name;
                 db.WellCastConditions.Add(condition);
                 db.SaveChanges();
                 return RedirectToAction("Index");

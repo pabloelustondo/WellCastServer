@@ -11,6 +11,7 @@ namespace WellCastServer.Models
         public int ID { get; set; }
         public string Label { get; set; }
         public string Message { get; set; }
+        public string Message2 { get; set; }
         public DateTime timeStamp { get; set; }
 
     }

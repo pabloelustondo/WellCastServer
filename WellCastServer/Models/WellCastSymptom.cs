@@ -26,7 +26,7 @@ namespace WellCastServer.Models
         [Newtonsoft.Json.JsonIgnore]
         public virtual ICollection<ConditionSymptom> ConditionSymptoms { get; set; }
 
-        public Guid SymptomCategoryID { get; set; }
+        public string SymptomCategoryID { get; set; }
 
         [Newtonsoft.Json.JsonIgnore]
         public virtual SymptomCategory SymptomCategory { get; set; }

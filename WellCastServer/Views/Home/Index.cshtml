@@ -11,7 +11,7 @@
         <td>
             @{
 
-            Guid firstSymptomCategory = ViewBag.symptomCategories[0].ID;
+            String firstSymptomCategory = ViewBag.symptomCategories[0].ID;
         }
         <a href="./api/SymptomCategories/@firstSymptomCategory.ToString()">GET: /api/SymptomCategories/@firstSymptomCategory.ToString()</a>
     </td>
@@ -23,7 +23,7 @@
         <td>
             @{
 
-            Guid firstSymptom = ViewBag.symptoms[0].ID;
+            String firstSymptom = ViewBag.symptoms[0].ID;
         }
         <a href="./api/Symptoms/@firstSymptom.ToString()">GET: /api/Symptoms/@firstSymptom.ToString()</a>
     </td>
@@ -35,7 +35,7 @@
         </td>
         <td>@{
             
-            Guid firstCondition = ViewBag.conditions[0].ID;
+            String firstCondition = ViewBag.conditions[0].ID;
         }
             <a href="./api/Conditions/@firstCondition.ToString()">GET: /api/Conditions/@firstCondition.ToString()</a>
         </td>
@@ -48,7 +48,7 @@
         <td>
             @{
 
-                Guid firstUserId = Guid.NewGuid();
+                String firstUserId="";
                 try
                 {
                     firstUserId = ViewBag.users[0].ID;
@@ -61,7 +61,7 @@
         <td>
             @{
 
-                Guid firstForecast=Guid.NewGuid();
+                String firstForecast="";
                 try
                 {
                     firstForecast = ViewBag.forecasts[0].ID;
@@ -86,7 +86,7 @@
         <td>
             @{
 
-                Guid firstProfile = ViewBag.profiles[0].ID;
+                String firstProfile = ViewBag.profiles[0].ID;
             }
             <a href="./api/Profiles/@firstProfile.ToString()">GET: /api/Profiles/@firstProfile.ToString()</a>
         </td>
@@ -97,7 +97,7 @@
         <td>
             @{
 
-                Guid firstUser = ViewBag.users[0].ID;
+                String firstUser = ViewBag.users[0].ID;
             }
             <a href="./api/Users/@firstUser.ToString()">GET: /api/Users/@firstUser.ToString()</a>
         </td>
@@ -110,7 +110,7 @@
         <td>
             @{
 
-                Guid firstLocation = ViewBag.locations[0].ID;
+                String firstLocation = ViewBag.locations[0].ID;
             }
             <a href="./api/Locations/@firstLocation.ToString()">GET: /api/Locations/@firstLocation.ToString()</a>
         </td>

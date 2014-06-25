@@ -61,7 +61,7 @@ namespace WellCastServer.Controllers
 
 
         // PUT api/Locations/5
-        public HttpResponseMessage PutWellCastLocation(Guid id, Location wellcastlocation)
+        public HttpResponseMessage PutWellCastLocation(String id, Location wellcastlocation)
         {
             if (!ModelState.IsValid)
             {

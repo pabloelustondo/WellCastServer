@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -9,15 +10,21 @@ using WellCastServer.Models;
 
 namespace WellCastServer.Controllers
 {
-    public class UserController : Controller
+    public class UserController : WellCastController
     {
         private WellCastServerContext db = new WellCastServerContext();
-
         //
         // GET: /User/
 
         public ActionResult Index()
         {
+            List<User> wusers = new List<Models.User>();
+            var musers = mdb.GetCollection("users").FindAll();
+            foreach (var muser in musers) {
+                User wuser = new User();
+                var muserID = muser["_id"].ToString();
+                wuser.ID = muser["_id"].ToString();
+            }
             return View(db.WellCastUsers.ToList());
         }
 
@@ -51,7 +58,7 @@ namespace WellCastServer.Controllers
         {
             if (ModelState.IsValid)
             {
-                user.ID = Guid.NewGuid();
+                user.ID = user.Name;
                 db.WellCastUsers.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");

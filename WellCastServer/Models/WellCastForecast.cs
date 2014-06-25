@@ -9,12 +9,12 @@ namespace WellCastServer.Models
     public class Forecast: WellCastRelation
     {
 
-        public Guid? ProfileID { get; set; }
+        public String ProfileID { get; set; }
 
         [Newtonsoft.Json.JsonIgnore]
         public virtual Profile Profile { get; set; }
 
-        public Guid? LocationID { get; set; }
+        public String LocationID { get; set; }
         [Newtonsoft.Json.JsonIgnore]
         public virtual Location Location { get; set; }
 

@@ -53,7 +53,7 @@ namespace WellCastServer.Controllers
         {
             if (ModelState.IsValid)
             {
-                profile.ID = Guid.NewGuid();
+                profile.ID = profile.Name;
                 db.WellCastProfiles.Add(profile);
                 db.SaveChanges();
                 return RedirectToAction("Index");

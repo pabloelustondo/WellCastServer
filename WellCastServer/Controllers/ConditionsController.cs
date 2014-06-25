@@ -56,7 +56,7 @@ namespace WellCastServer.Controllers
         }
 
         // PUT api/Conditions/5
-        public HttpResponseMessage PutCondition(Guid id, Condition condition)
+        public HttpResponseMessage PutCondition(String id, Condition condition)
         {
             if (!ModelState.IsValid)
             {

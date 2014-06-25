@@ -7,10 +7,10 @@ namespace WellCastServer.Models
 {
     public class ConditionProfile : WellCastRelation
     {
-        public Guid ConditionID { get; set; }
+        public String ConditionID { get; set; }
         public virtual Condition Condition { get; set; }
 
-        public Guid ProfileID { get; set; }
+        public String ProfileID { get; set; }
         public virtual Profile Profile { get; set; }
 
     }

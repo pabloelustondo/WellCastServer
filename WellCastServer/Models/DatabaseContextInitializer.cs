@@ -6,7 +6,7 @@ using System.Web;
 
 namespace WellCastServer.Models
 {
-    public class DatabaseContextInitializer : DropCreateDatabaseIfModelChanges<WellCastServerContext>
+    public class DatabaseContextInitializer : DropCreateDatabaseAlways<WellCastServerContext>
     {
         protected override void Seed(WellCastServerContext db)
     {
@@ -16,6 +16,8 @@ namespace WellCastServer.Models
         var condition2 = new Condition { Name = "Condition2", Description = "Condition2" };
         condition1.KeyName = condition1.Name;
         condition2.KeyName = condition2.Name;
+        condition1.ID = condition1.Name;
+        condition2.ID = condition2.Name;
 
         db.WellCastConditions.Add(condition1);
         db.WellCastConditions.Add(condition2);
@@ -25,6 +27,8 @@ namespace WellCastServer.Models
         var symptomCategory2 = new SymptomCategory { Name = "SymptomCategory2", Description = "SymptomCategory2" };
         symptomCategory1.KeyName = symptomCategory1.Name;
         symptomCategory2.KeyName = symptomCategory2.Name;
+        symptomCategory1.ID = symptomCategory1.Name;
+        symptomCategory2.ID = symptomCategory2.Name;
 
         db.WellCastSymptomCategories.Add(symptomCategory1);
         db.WellCastSymptomCategories.Add(symptomCategory2);
@@ -39,6 +43,11 @@ namespace WellCastServer.Models
         symptom2.KeyName = symptom2.Name;
         symptom3.KeyName = symptom3.Name;
         symptom4.KeyName = symptom4.Name;
+
+        symptom1.ID = symptom1.Name;
+        symptom2.ID = symptom2.Name;
+        symptom3.ID = symptom3.Name;
+        symptom4.ID = symptom4.Name;
      
         db.WellCastSymptoms.Add(symptom1);
         db.WellCastSymptoms.Add(symptom2);
@@ -66,6 +75,9 @@ namespace WellCastServer.Models
         var user1 = new User { Name = "User1"};
         var user2 = new User { Name = "User2"};
 
+        user1.ID = user1.Name;
+        user2.ID = user2.Name;
+
         db.WellCastUsers.Add(user1);
         db.WellCastUsers.Add(user2);
 
@@ -74,6 +86,11 @@ namespace WellCastServer.Models
         var location1 = new Location { Name = "Location1", Description = "Location1" };
         var location2 = new Location { Name = "Location2", Description = "Location2" };
         var location3 = new Location { Name = "Location3", Description = "Location3" };
+   
+        location1.ID = location1.Name;
+        location2.ID = location2.Name;
+        location3.ID = location3.Name;
+
 
         location1.UserID = user1.ID;
         location1.Name = "CN Tower";
@@ -109,6 +126,11 @@ namespace WellCastServer.Models
         var profile2 = new Profile { UserID = user1.ID, Name = "Profile2", Description = "Profile2", Gender = WellCastGender.Male, Age = 35 };
         var profile3 = new Profile { UserID = user2.ID, Name = "Profile3", Description = "Profile3", Gender = WellCastGender.Female, Age = 23 };
         var profile4 = new Profile { UserID = user2.ID, Name = "Profile4", Description = "Profile4", Gender = WellCastGender.Female, Age = 18 };
+
+        profile1.ID = profile1.Name;
+        profile2.ID = profile2.Name;
+        profile3.ID = profile3.Name;
+        profile4.ID = profile4.Name;
 
         db.WellCastProfiles.Add(profile1);
         db.WellCastProfiles.Add(profile2);

@@ -7,7 +7,7 @@ namespace WellCastServer.Models
 {
     public class Location: WellCastEntity
     {
-        public Guid UserID { get; set; }
+        public String UserID { get; set; }
 
         [Newtonsoft.Json.JsonIgnore]
         public virtual User User { get; set; }

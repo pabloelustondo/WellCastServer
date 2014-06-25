@@ -53,7 +53,7 @@ namespace WellCastServer.Controllers
         {
             if (ModelState.IsValid)
             {
-                symptom.ID = Guid.NewGuid();
+                symptom.ID = symptom.Name;
                 db.WellCastSymptoms.Add(symptom);
                 db.SaveChanges();
                 return RedirectToAction("Index");

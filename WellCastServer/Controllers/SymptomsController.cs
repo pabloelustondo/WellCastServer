@@ -59,7 +59,7 @@ namespace WellCastServer.Controllers
             return envelope;
         }
         // PUT api/Symptoms/5
-        public HttpResponseMessage PutSymptom(Guid id, Symptom symptom)
+        public HttpResponseMessage PutSymptom(String id, Symptom symptom)
         {
             if (!ModelState.IsValid)
             {

@@ -3,15 +3,15 @@
   <Class Name="WellCastServer.Models.Condition" Collapsed="true">
     <Position X="0.75" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAACAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\WellCastCondition.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WellCastServer.Models.ConditionForecast">
     <Position X="6" Y="5.75" Width="1.5" />
-    <AssociationLine Name="Condition" Type="WellCastServer.Models.Condition">
+    <AssociationLine Name="Profile" Type="WellCastServer.Models.Profile">
       <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
-        <Position X="-4.954" Y="4.224" Height="0.182" Width="0.974" />
+        <Position X="2.194" Y="-0.305" Height="0.182" Width="0.72" />
       </MemberNameLabel>
     </AssociationLine>
     <AssociationLine Name="Location" Type="WellCastServer.Models.Location">
@@ -19,9 +19,9 @@
         <Position X="0.098" Y="2.056" />
       </MemberNameLabel>
     </AssociationLine>
-    <AssociationLine Name="Profile" Type="WellCastServer.Models.Profile">
+    <AssociationLine Name="Condition" Type="WellCastServer.Models.Condition">
       <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
-        <Position X="2.194" Y="-0.305" Height="0.182" Width="0.72" />
+        <Position X="-4.954" Y="4.224" Height="0.182" Width="0.974" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
@@ -29,10 +29,10 @@
       <FileName>Models\WellCastConditionForecast.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Condition" />
       <Property Name="Forecast" />
-      <Property Name="Location" />
       <Property Name="Profile" />
+      <Property Name="Location" />
+      <Property Name="Condition" />
     </ShowAsAssociation>
   </Class>
   <Class Name="WellCastServer.Models.ConditionProfile">
@@ -59,7 +59,7 @@
   <Class Name="WellCastServer.Models.ConditionReport">
     <Position X="12" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAEAgAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAEAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\WellCastConditionReport.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -86,9 +86,6 @@
   </Class>
   <Class Name="WellCastServer.Models.WellCastEntity">
     <Position X="5.25" Y="0.5" Width="1.5" />
-    <Members>
-      <Method Name="WellCastEntity" Hidden="true" />
-    </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAggAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\WellCastWellCastEntity.cs</FileName>
@@ -97,7 +94,7 @@
   <Class Name="WellCastServer.Models.Symptom" Collapsed="true">
     <Position X="2.5" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAACAAABCEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAABAACAAAACEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\WellCastSymptom.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -120,14 +117,14 @@
       <Property Name="RiskDay4" Hidden="true" />
       <Property Name="RiskDay5" Hidden="true" />
     </Members>
-    <AssociationLine Name="Location" Type="WellCastServer.Models.Location">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="2.609" Y="-3.178" />
-      </MemberNameLabel>
-    </AssociationLine>
     <AssociationLine Name="Profile" Type="WellCastServer.Models.Profile">
       <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
         <Position X="0.087" Y="0.302" Height="0.182" Width="0.731" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Location" Type="WellCastServer.Models.Location">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="2.609" Y="-3.178" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
@@ -135,8 +132,8 @@
       <FileName>Models\WellCastForecast.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Location" />
       <Property Name="Profile" />
+      <Property Name="Location" />
     </ShowAsAssociation>
   </Class>
   <Class Name="WellCastServer.Models.Location">

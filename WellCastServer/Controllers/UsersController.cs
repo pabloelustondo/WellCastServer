@@ -60,7 +60,7 @@ namespace WellCastServer.Controllers
         }
 
         // PUT api/Users/5
-        public HttpResponseMessage PutUser(Guid id, User user)
+        public HttpResponseMessage PutUser(String id, User user)
         {
             if (!ModelState.IsValid)
             {

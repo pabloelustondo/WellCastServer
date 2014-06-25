@@ -11,7 +11,7 @@ namespace WellCastServer.Models
     }
     public class Profile: WellCastEntity
     {
-        public Guid UserID { get; set; }
+        public String UserID { get; set; }
 
         [Newtonsoft.Json.JsonIgnore]
         public virtual User User { get; set; }
@@ -19,11 +19,11 @@ namespace WellCastServer.Models
         public WellCastGender Gender { get; set; }
         public int Age { get; set; }
 
-        public virtual List<Guid> ConditionIDs
+        public virtual List<String> ConditionIDs
         {
             get
             {
-                var _ConditionIDs = new List<Guid>();
+                var _ConditionIDs = new List<String>();
                 if (ConditionProfiles == null) return _ConditionIDs;
                 foreach (var cs in ConditionProfiles)
                 {

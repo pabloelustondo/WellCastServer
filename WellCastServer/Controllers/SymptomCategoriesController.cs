@@ -60,7 +60,7 @@ namespace WellCastServer.Controllers
         }
 
         // PUT api/SymptomCategories/5
-        public HttpResponseMessage PutSymptomCategory(Guid id, SymptomCategory symptomcategory)
+        public HttpResponseMessage PutSymptomCategory(String id, SymptomCategory symptomcategory)
         {
             if (!ModelState.IsValid)
             {

@@ -5,13 +5,13 @@ namespace WellCastServer.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    public sealed partial class keyname : IMigrationMetadata
+    public sealed partial class initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(keyname));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201406231432277_keyname"; }
+            get { return "201406252113079_initial"; }
         }
         
         string IMigrationMetadata.Source

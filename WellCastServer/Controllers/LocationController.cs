@@ -53,7 +53,7 @@ namespace WellCastServer.Controllers
         {
             if (ModelState.IsValid)
             {
-                location.ID = Guid.NewGuid();
+                location.ID = location.Name;
                 db.WellCastLocations.Add(location);
                 db.SaveChanges();
                 return RedirectToAction("Index");

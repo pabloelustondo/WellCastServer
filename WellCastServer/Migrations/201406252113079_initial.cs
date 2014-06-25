@@ -11,13 +11,14 @@ namespace WellCastServer.Migrations
                 "dbo.Symptoms",
                 c => new
                     {
-                        ID = c.Guid(nullable: false),
-                        SymptomCategoryID = c.Guid(nullable: false),
+                        ID = c.String(nullable: false, maxLength: 128),
+                        SymptomCategoryID = c.String(maxLength: 128),
+                        KeyName = c.String(),
                         Name = c.String(),
                         Description = c.String(),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.SymptomCategories", t => t.SymptomCategoryID, cascadeDelete: true)
+                .ForeignKey("dbo.SymptomCategories", t => t.SymptomCategoryID)
                 .Index(t => t.SymptomCategoryID);
             
             CreateTable(
@@ -25,12 +26,12 @@ namespace WellCastServer.Migrations
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        ConditionID = c.Guid(nullable: false),
-                        SymptomID = c.Guid(nullable: false),
+                        ConditionID = c.String(maxLength: 128),
+                        SymptomID = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Conditions", t => t.ConditionID, cascadeDelete: true)
-                .ForeignKey("dbo.Symptoms", t => t.SymptomID, cascadeDelete: true)
+                .ForeignKey("dbo.Conditions", t => t.ConditionID)
+                .ForeignKey("dbo.Symptoms", t => t.SymptomID)
                 .Index(t => t.ConditionID)
                 .Index(t => t.SymptomID);
             
@@ -38,7 +39,8 @@ namespace WellCastServer.Migrations
                 "dbo.Conditions",
                 c => new
                     {
-                        ID = c.Guid(nullable: false),
+                        ID = c.String(nullable: false, maxLength: 128),
+                        KeyName = c.String(),
                         Name = c.String(),
                         Description = c.String(),
                     })
@@ -48,7 +50,8 @@ namespace WellCastServer.Migrations
                 "dbo.SymptomCategories",
                 c => new
                     {
-                        ID = c.Guid(nullable: false),
+                        ID = c.String(nullable: false, maxLength: 128),
+                        KeyName = c.String(),
                         Name = c.String(),
                         Description = c.String(),
                     })
@@ -61,6 +64,7 @@ namespace WellCastServer.Migrations
                         ID = c.Int(nullable: false, identity: true),
                         Label = c.String(),
                         Message = c.String(),
+                        Message2 = c.String(),
                         timeStamp = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.ID);
@@ -69,8 +73,8 @@ namespace WellCastServer.Migrations
                 "dbo.Locations",
                 c => new
                     {
-                        ID = c.Guid(nullable: false),
-                        UserID = c.Guid(nullable: false),
+                        ID = c.String(nullable: false, maxLength: 128),
+                        UserID = c.String(maxLength: 128),
                         lat = c.Double(nullable: false),
                         lon = c.Double(nullable: false),
                         x = c.Int(nullable: false),
@@ -79,14 +83,15 @@ namespace WellCastServer.Migrations
                         Description = c.String(),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Users", t => t.UserID, cascadeDelete: true)
+                .ForeignKey("dbo.Users", t => t.UserID)
                 .Index(t => t.UserID);
             
             CreateTable(
                 "dbo.Users",
                 c => new
                     {
-                        ID = c.Guid(nullable: false),
+                        ID = c.String(nullable: false, maxLength: 128),
+                        x = c.Int(nullable: false),
                         Name = c.String(),
                         Description = c.String(),
                     })
@@ -96,15 +101,15 @@ namespace WellCastServer.Migrations
                 "dbo.Profiles",
                 c => new
                     {
-                        ID = c.Guid(nullable: false),
-                        UserID = c.Guid(nullable: false),
+                        ID = c.String(nullable: false, maxLength: 128),
+                        UserID = c.String(maxLength: 128),
                         Gender = c.Int(nullable: false),
                         Age = c.Int(nullable: false),
                         Name = c.String(),
                         Description = c.String(),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Users", t => t.UserID, cascadeDelete: true)
+                .ForeignKey("dbo.Users", t => t.UserID)
                 .Index(t => t.UserID);
             
             CreateTable(
@@ -112,12 +117,12 @@ namespace WellCastServer.Migrations
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        ConditionID = c.Guid(nullable: false),
-                        ProfileID = c.Guid(nullable: false),
+                        ConditionID = c.String(maxLength: 128),
+                        ProfileID = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Conditions", t => t.ConditionID, cascadeDelete: true)
-                .ForeignKey("dbo.Profiles", t => t.ProfileID, cascadeDelete: true)
+                .ForeignKey("dbo.Conditions", t => t.ConditionID)
+                .ForeignKey("dbo.Profiles", t => t.ProfileID)
                 .Index(t => t.ConditionID)
                 .Index(t => t.ProfileID);
             
@@ -126,9 +131,10 @@ namespace WellCastServer.Migrations
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        ProfileID = c.Guid(),
-                        LocationID = c.Guid(),
-                        ConditionID = c.Guid(),
+                        ForecastID = c.Guid(nullable: false),
+                        ProfileID = c.String(maxLength: 128),
+                        LocationID = c.String(maxLength: 128),
+                        ConditionID = c.String(maxLength: 128),
                         Date = c.DateTime(nullable: false),
                         RiskDay0 = c.Int(nullable: false),
                         RiskDay1 = c.Int(nullable: false),
@@ -138,20 +144,52 @@ namespace WellCastServer.Migrations
                         RiskDay5 = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Forecasts", t => t.ForecastID, cascadeDelete: true)
                 .ForeignKey("dbo.Profiles", t => t.ProfileID)
                 .ForeignKey("dbo.Locations", t => t.LocationID)
                 .ForeignKey("dbo.Conditions", t => t.ConditionID)
+                .Index(t => t.ForecastID)
                 .Index(t => t.ProfileID)
                 .Index(t => t.LocationID)
                 .Index(t => t.ConditionID);
+            
+            CreateTable(
+                "dbo.Forecasts",
+                c => new
+                    {
+                        ID = c.Guid(nullable: false),
+                        ProfileID = c.String(maxLength: 128),
+                        LocationID = c.String(maxLength: 128),
+                        Date = c.DateTime(nullable: false),
+                        RiskDay0 = c.Int(nullable: false),
+                        RiskDay1 = c.Int(nullable: false),
+                        RiskDay2 = c.Int(nullable: false),
+                        RiskDay3 = c.Int(nullable: false),
+                        RiskDay4 = c.Int(nullable: false),
+                        RiskDay5 = c.Int(nullable: false),
+                        ReportDay0 = c.String(),
+                        ReportDay1 = c.String(),
+                        ReportDay2 = c.String(),
+                        ReportDay3 = c.String(),
+                        ReportDay4 = c.String(),
+                        ReportDay5 = c.String(),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Profiles", t => t.ProfileID)
+                .ForeignKey("dbo.Locations", t => t.LocationID)
+                .Index(t => t.ProfileID)
+                .Index(t => t.LocationID);
             
         }
         
         public override void Down()
         {
+            DropIndex("dbo.Forecasts", new[] { "LocationID" });
+            DropIndex("dbo.Forecasts", new[] { "ProfileID" });
             DropIndex("dbo.ConditionForecasts", new[] { "ConditionID" });
             DropIndex("dbo.ConditionForecasts", new[] { "LocationID" });
             DropIndex("dbo.ConditionForecasts", new[] { "ProfileID" });
+            DropIndex("dbo.ConditionForecasts", new[] { "ForecastID" });
             DropIndex("dbo.ConditionProfiles", new[] { "ProfileID" });
             DropIndex("dbo.ConditionProfiles", new[] { "ConditionID" });
             DropIndex("dbo.Profiles", new[] { "UserID" });
@@ -159,9 +197,12 @@ namespace WellCastServer.Migrations
             DropIndex("dbo.ConditionSymptoms", new[] { "SymptomID" });
             DropIndex("dbo.ConditionSymptoms", new[] { "ConditionID" });
             DropIndex("dbo.Symptoms", new[] { "SymptomCategoryID" });
+            DropForeignKey("dbo.Forecasts", "LocationID", "dbo.Locations");
+            DropForeignKey("dbo.Forecasts", "ProfileID", "dbo.Profiles");
             DropForeignKey("dbo.ConditionForecasts", "ConditionID", "dbo.Conditions");
             DropForeignKey("dbo.ConditionForecasts", "LocationID", "dbo.Locations");
             DropForeignKey("dbo.ConditionForecasts", "ProfileID", "dbo.Profiles");
+            DropForeignKey("dbo.ConditionForecasts", "ForecastID", "dbo.Forecasts");
             DropForeignKey("dbo.ConditionProfiles", "ProfileID", "dbo.Profiles");
             DropForeignKey("dbo.ConditionProfiles", "ConditionID", "dbo.Conditions");
             DropForeignKey("dbo.Profiles", "UserID", "dbo.Users");
@@ -169,6 +210,7 @@ namespace WellCastServer.Migrations
             DropForeignKey("dbo.ConditionSymptoms", "SymptomID", "dbo.Symptoms");
             DropForeignKey("dbo.ConditionSymptoms", "ConditionID", "dbo.Conditions");
             DropForeignKey("dbo.Symptoms", "SymptomCategoryID", "dbo.SymptomCategories");
+            DropTable("dbo.Forecasts");
             DropTable("dbo.ConditionForecasts");
             DropTable("dbo.ConditionProfiles");
             DropTable("dbo.Profiles");
