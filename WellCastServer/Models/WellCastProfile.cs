@@ -16,22 +16,11 @@ namespace WellCastServer.Models
         [Newtonsoft.Json.JsonIgnore]
         public virtual User User { get; set; }
 
-        public WellCastGender Gender { get; set; }
+        public String Gender { get; set; }
         public int Age { get; set; }
 
-        public virtual List<String> ConditionIDs
-        {
-            get
-            {
-                var _ConditionIDs = new List<String>();
-                if (ConditionProfiles == null) return _ConditionIDs;
-                foreach (var cs in ConditionProfiles)
-                {
-                    _ConditionIDs.Add(cs.Condition.ID);
-                }
-                return _ConditionIDs;
-            }
-        }
+        public virtual List<String> ConditionIDs { get; set; }
+        public virtual List<String> LocationIDs { get; set; }
 
         [Newtonsoft.Json.JsonIgnore]
         public virtual ICollection<ConditionProfile> ConditionProfiles { get; set; }

@@ -48,7 +48,16 @@ namespace WellCastServer.Controllers
 
             var usersCollection = database.GetCollection("users");
 
-            var users = usersCollection.FindAll();
+
+            var mconditions = database.GetCollection("conditions").FindAll();
+            var mfeedbacks = database.GetCollection("feedbacks").FindAll();
+            var mprofiles = database.GetCollection("profiles").FindAll();
+            var msessions = database.GetCollection("sessions").FindAll();
+            var msymptoms = database.GetCollection("symptoms").FindAll();
+            var msystem_indexes = database.GetCollection("system.indexes").FindAll();
+            var msystem_users = database.GetCollection("system.users").FindAll();
+            var muserDatas = database.GetCollection("userDatas").FindAll();
+            var musers = database.GetCollection("users").FindAll();
 
 
             return View();

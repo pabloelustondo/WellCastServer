@@ -304,6 +304,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\WellCastMongoUserDataModel.png" />
     <Content Include="Content\WellCastServerAPI_Archictural_Ideas.JPG" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

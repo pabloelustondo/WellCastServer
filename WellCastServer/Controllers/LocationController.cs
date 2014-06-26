@@ -9,7 +9,7 @@ using WellCastServer.Models;
 
 namespace WellCastServer.Controllers
 {
-    public class LocationController : Controller
+    public class LocationController : WellCastController
     {
         private WellCastServerContext db = new WellCastServerContext();
 
@@ -18,8 +18,23 @@ namespace WellCastServer.Controllers
 
         public ActionResult Index()
         {
-            var wellcastlocations = db.WellCastLocations.Include(l => l.User);
-            return View(wellcastlocations.ToList());
+            List<Location> wlocations = new List<Models.Location>();
+            var mlocations = mdb.GetCollection("locations").FindAll();
+
+            var collections = mdb.GetCollectionNames();
+            foreach (var mlocation in mlocations)
+            {
+                Location wlocation = new Location();
+                try { wlocation.ID = mlocation["_id"].ToString(); }
+                catch (Exception) { };
+                try { wlocation.Name = mlocation["name"].ToString(); }
+                catch (Exception) { };
+                try { wlocation.UserID = mlocation["location_id"].ToString(); }
+                catch (Exception) { };
+
+                wlocations.Add(wlocation);
+            }
+            return View(wlocations);
         }
 
         //

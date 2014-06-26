@@ -123,10 +123,10 @@ namespace WellCastServer.Models
         db.WellCastLocations.Add(location2);
         db.SaveChanges();
 
-        var profile1 = new Profile { UserID = user1.ID, Name = "Profile1", Description = "Profile1", Gender = WellCastGender.Male, Age = 46 };
-        var profile2 = new Profile { UserID = user1.ID, Name = "Profile2", Description = "Profile2", Gender = WellCastGender.Male, Age = 35 };
-        var profile3 = new Profile { UserID = user2.ID, Name = "Profile3", Description = "Profile3", Gender = WellCastGender.Female, Age = 23 };
-        var profile4 = new Profile { UserID = user2.ID, Name = "Profile4", Description = "Profile4", Gender = WellCastGender.Female, Age = 18 };
+        var profile1 = new Profile { UserID = user1.ID, Name = "Profile1", Description = "Profile1", Gender = "male", Age = 46 };
+        var profile2 = new Profile { UserID = user1.ID, Name = "Profile2", Description = "Profile2", Gender = "male", Age = 35 };
+        var profile3 = new Profile { UserID = user2.ID, Name = "Profile3", Description = "Profile3", Gender = "female", Age = 23 };
+        var profile4 = new Profile { UserID = user2.ID, Name = "Profile4", Description = "Profile4", Gender = "female", Age = 18 };
 
         profile1.ID = profile1.Name;
         profile2.ID = profile2.Name;
