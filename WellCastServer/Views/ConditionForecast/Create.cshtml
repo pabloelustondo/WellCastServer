@@ -22,19 +22,19 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.ProfileID, "Profile")
+            @Html.LabelFor(model => model.ProfileMID)
         </div>
         <div class="editor-field">
-            @Html.DropDownList("ProfileID", String.Empty)
-            @Html.ValidationMessageFor(model => model.ProfileID)
+            @Html.EditorFor(model => model.ProfileMID)
+            @Html.ValidationMessageFor(model => model.ProfileMID)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.LocationID, "Location")
+            @Html.LabelFor(model => model.LocationMID)
         </div>
         <div class="editor-field">
-            @Html.DropDownList("LocationID", String.Empty)
-            @Html.ValidationMessageFor(model => model.LocationID)
+            @Html.EditorFor(model => model.LocationMID)
+            @Html.ValidationMessageFor(model => model.LocationMID)
         </div>
 
         <div class="editor-label">

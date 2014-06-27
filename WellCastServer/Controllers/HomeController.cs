@@ -16,6 +16,8 @@ namespace WellCastServer.Controllers
             ViewBag.conditions = db.WellCastConditions.ToList();
             ViewBag.symptomCategories = db.WellCastSymptomCategories.ToList();
             ViewBag.symptoms = db.WellCastSymptoms.ToList();
+            ViewBag.user = wellCastServerEngine.getOneUser();
+
 
             ViewBag.forecasts = db.WellCastForecasts.ToList();
             return View();

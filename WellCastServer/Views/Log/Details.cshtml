@@ -1,0 +1,43 @@
+﻿@model WellCastServer.Models.WellCastLog
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>WellCastLog</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Label)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Label)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Message)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Message)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Message2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Message2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.timeStamp)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.timeStamp)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

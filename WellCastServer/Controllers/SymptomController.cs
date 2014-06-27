@@ -25,7 +25,7 @@ namespace WellCastServer.Controllers
         //
         // GET: /Symptom/Details/5
 
-        public ActionResult Details(Guid id)
+        public ActionResult Details(string id = null)
         {
             Symptom symptom = db.WellCastSymptoms.Find(id);
             if (symptom == null)
@@ -40,7 +40,7 @@ namespace WellCastServer.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.SymptomCategoryID = new SelectList(db.WellCastSymptomCategories, "ID", "Name");
+            ViewBag.SymptomCategoryID = new SelectList(db.WellCastSymptomCategories, "ID", "KeyName");
             return View();
         }
 
@@ -53,27 +53,26 @@ namespace WellCastServer.Controllers
         {
             if (ModelState.IsValid)
             {
-                symptom.ID = symptom.Name;
                 db.WellCastSymptoms.Add(symptom);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.SymptomCategoryID = new SelectList(db.WellCastSymptomCategories, "ID", "Name", symptom.SymptomCategoryID);
+            ViewBag.SymptomCategoryID = new SelectList(db.WellCastSymptomCategories, "ID", "KeyName", symptom.SymptomCategoryID);
             return View(symptom);
         }
 
         //
         // GET: /Symptom/Edit/5
 
-        public ActionResult Edit(Guid id)
+        public ActionResult Edit(string id = null)
         {
             Symptom symptom = db.WellCastSymptoms.Find(id);
             if (symptom == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.SymptomCategoryID = new SelectList(db.WellCastSymptomCategories, "ID", "Name", symptom.SymptomCategoryID);
+            ViewBag.SymptomCategoryID = new SelectList(db.WellCastSymptomCategories, "ID", "KeyName", symptom.SymptomCategoryID);
             return View(symptom);
         }
 
@@ -90,14 +89,14 @@ namespace WellCastServer.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.SymptomCategoryID = new SelectList(db.WellCastSymptomCategories, "ID", "Name", symptom.SymptomCategoryID);
+            ViewBag.SymptomCategoryID = new SelectList(db.WellCastSymptomCategories, "ID", "KeyName", symptom.SymptomCategoryID);
             return View(symptom);
         }
 
         //
         // GET: /Symptom/Delete/5
 
-        public ActionResult Delete(Guid id)
+        public ActionResult Delete(string id = null)
         {
             Symptom symptom = db.WellCastSymptoms.Find(id);
             if (symptom == null)
@@ -112,7 +111,7 @@ namespace WellCastServer.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Guid id)
+        public ActionResult DeleteConfirmed(string id)
         {
             Symptom symptom = db.WellCastSymptoms.Find(id);
             db.WellCastSymptoms.Remove(symptom);

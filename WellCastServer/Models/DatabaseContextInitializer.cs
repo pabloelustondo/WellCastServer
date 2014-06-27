@@ -6,8 +6,8 @@ using System.Web;
 
 namespace WellCastServer.Models
 {
-  public class DatabaseContextInitializer : DropCreateDatabaseAlways<WellCastServerContext>
-  //  public class DatabaseContextInitializer : DropCreateDatabaseIfModelChanges<WellCastServerContext>
+  //public class DatabaseContextInitializer : DropCreateDatabaseAlways<WellCastServerContext>
+   public class DatabaseContextInitializer : DropCreateDatabaseIfModelChanges<WellCastServerContext>
     {
         protected override void Seed(WellCastServerContext db)
     {

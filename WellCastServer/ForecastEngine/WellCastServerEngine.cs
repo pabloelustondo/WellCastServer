@@ -42,6 +42,25 @@ namespace WellCastServer
             return "All existing forecast or condition forecasts where removed (if any)";
         }
 
+        public User getOneUser() {
+
+
+            var musers = mdb.GetCollection("userDatas").FindAll();
+            User wuser = new User();
+            var muser = musers.First();
+            var muserID = muser["_id"].ToString();
+            wuser.ID = muser["_id"].ToString();
+
+                    var profileIDs = muser["profiles"].AsBsonArray.ToList();
+                    wuser.ProfileMIDs = new List<string>();
+                    foreach (var profileID in profileIDs)
+                    {
+                        wuser.ProfileMIDs.Add(profileID.ToString());
+                    }
+
+            return wuser;
+        }
+
         public List<User> getAllUsers() {
 
             List<User> wusers = new List<Models.User>();
@@ -91,6 +110,8 @@ namespace WellCastServer
                     var profileIDs = muser["profiles"].AsBsonArray.ToList();
                     wuser.ProfileMIDs = new List<string>();
                     wuser.Profiles = new List<Profile>();
+
+                    int max = 10;
                     foreach (var profileID in profileIDs)
                     {
                         wuser.ProfileMIDs.Add(profileID.ToString());
@@ -116,6 +137,8 @@ namespace WellCastServer
 
 
                         wuser.Profiles.Add(wprofile);
+                        max--;
+                        if (max == 0) break;
                     }
                 }
 
@@ -174,6 +197,7 @@ namespace WellCastServer
 
                         forecast.ProfileMID = profile.ID;
                         forecast.LocationMID = location.ID;
+                        forecast.UserMID = user.ID;
                         forecast.Date = forecastingDate;
                         forecast.ID = Guid.NewGuid();
 
@@ -264,7 +288,7 @@ namespace WellCastServer
                 }//end for each location
             }//end for each profile
             }//end for each usser
-
+            db.SaveChanges();
             returnMessage = "Forecast where calculated for date-hour: " + forecastingDate;
             return returnMessage;
         }

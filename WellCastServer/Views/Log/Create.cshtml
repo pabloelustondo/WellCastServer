@@ -1,0 +1,60 @@
+﻿@model WellCastServer.Models.WellCastLog
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>WellCastLog</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Label)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Label)
+            @Html.ValidationMessageFor(model => model.Label)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Message)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Message)
+            @Html.ValidationMessageFor(model => model.Message)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Message2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Message2)
+            @Html.ValidationMessageFor(model => model.Message2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.timeStamp)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.timeStamp)
+            @Html.ValidationMessageFor(model => model.timeStamp)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

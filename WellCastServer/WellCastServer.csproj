@@ -416,6 +416,11 @@
     <Content Include="Views\Home\deleteForecast.cshtml" />
     <Content Include="Views\TestMongo\Index.cshtml" />
     <Content Include="Views\TestMongo\TestRealMongo.cshtml" />
+    <Content Include="Views\Log\Index.cshtml" />
+    <Content Include="Views\Log\Details.cshtml" />
+    <Content Include="Views\Log\Create.cshtml" />
+    <Content Include="Views\Log\Edit.cshtml" />
+    <Content Include="Views\Log\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

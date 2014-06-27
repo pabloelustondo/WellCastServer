@@ -2,48 +2,47 @@
 <li>@Html.ActionLink("Calculate New Forecast", "calculateNewForecast", "Home")</li>
 <li>@Html.ActionLink("Clean forecast - delete all", "deleteForecast", "Home")</li>
 
-<h1>Basic Get Operations Inteded to be used by Wellcast Node-Based Api</h1>
 <table>
     <tr>
         <td>
-            <a href="./api/SymptomCategories">GET: /api/SymptomCategories</a>
+            <a href="./api/SymptomCategories/GetSymptomCategories">GET: /api/SymptomCategories/GetSymptomCategories</a>
         </td>
         <td>
             @{
 
             String firstSymptomCategory = ViewBag.symptomCategories[0].ID;
         }
-        <a href="./api/SymptomCategories/@firstSymptomCategory.ToString()">GET: /api/SymptomCategories/@firstSymptomCategory.ToString()</a>
+            <a href="./api/SymptomCategories/GetSymptomCategories/@firstSymptomCategory.ToString()">GET: /api/SymptomCategories/GetSymptomCategories/@firstSymptomCategory.ToString()</a>
     </td>
     </tr>
     <tr>
     <td>
-           <a href="./api/Symptoms">GET: /api/Symptoms</a>
+           <a href="./api/Symptoms/GetSymptoms">GET: /api/Symptoms/GetSymptoms</a>
     </td>
         <td>
             @{
 
             String firstSymptom = ViewBag.symptoms[0].ID;
         }
-        <a href="./api/Symptoms/@firstSymptom.ToString()">GET: /api/Symptoms/@firstSymptom.ToString()</a>
+            <a href="./api/Symptoms/GetSymptoms/@firstSymptom.ToString()">GET: /api/Symptoms/GetSymptoms/@firstSymptom.ToString()</a>
     </td>
 
     </tr>
     <tr>
         <td>
-            <a href="./api/Conditions">GET: /api/Conditions</a>
+            <a href="./api/Conditions/GetConditions">GET: /api/Conditions/GetConditions</a>
         </td>
         <td>@{
             
             String firstCondition = ViewBag.conditions[0].ID;
         }
-            <a href="./api/Conditions/@firstCondition.ToString()">GET: /api/Conditions/@firstCondition.ToString()</a>
+            <a href="./api/Conditions/GetConditions/@firstCondition.ToString()">GET: /api/Conditions/GetConditions/@firstCondition.ToString()</a>
         </td>
     </tr> 
 
     <tr>
-        <td><p>All Forecasts (impractical call when system in production)</p>
-            <a href="./api/Forecasts"> GET: /api/Forecasts </a>
+        <td><p>All Forecasts (impractical in practice..)</p>
+            <a href="./api/Forecasts/GetForecasts"> GET: /api/Forecasts/GetForecasts </a>
         </td>
         <td>
             @{
@@ -51,26 +50,28 @@
                 String firstUserId="";
                 try
                 {
-                    firstUserId = ViewBag.users[0].ID;
+                    firstUserId = ViewBag.user.ID;
                 }
                 catch (Exception) { }
             }
             <p>All Forecasts for one userId</p>
-            <a href="./api/Forecasts?userid=@firstUserId.ToString()">GET: /api/Forecasts?userid=@firstUserId.ToString()</a>
+            <a href="./api/Forecasts/GetForecastsForUser?userid=@firstUserId.ToString()">GET: /api/Forecasts/GetForecastsForUser?userid=@firstUserId.ToString()</a>
         </td>
         <td>
             @{
 
-                String firstForecast="";
+                String firstProfileId = "";
                 try
                 {
-                    firstForecast = ViewBag.forecasts[0].ID;
+                    firstUserId = ViewBag.user.ID;
+                    firstProfileId = ViewBag.user.ProfileMIDs[0];
                 }
                 catch (Exception) { }
             }
-            <p>One specific forecast using the Guid</p>
-            <a href="./api/Forecasts/@firstForecast.ToString()">GET: /api/Forecasts/@firstForecast.ToString()</a>
+            <p>All Forecasts for one profileId</p>
+            <a href="./api/Forecasts/GetForecastsForProfile?profileid=@firstProfileId.ToString()">GET: /api/Forecasts/GetForecastsForProfile?profileid=@firstProfileId.ToString()</a>
         </td>
+       
 
     </tr> 
 

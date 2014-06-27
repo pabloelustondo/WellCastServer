@@ -2,112 +2,116 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web;
-using System.Web.Http;
+using System.Web.Mvc;
 using WellCastServer.Models;
 
 namespace WellCastServer.Controllers
 {
-    public class LogController : ApiController
+    public class LogController : Controller
     {
         private WellCastServerContext db = new WellCastServerContext();
 
-        // GET api/Log
-        public IEnumerable<WellCastLog> GetWellCastLogs()
+        //
+        // GET: /Log/
+
+        public ActionResult Index()
         {
-            DateTime now = DateTime.Now;
-            string timeStamp = now.Day + "-" +  now.Hour + "-" + now.Minute + "-" + now.Second;
-            WellCastLog wellcastlog = new WellCastLog();
-            wellcastlog.Label = "label" + timeStamp;
-            wellcastlog.Label = "message" + timeStamp;
-            wellcastlog.timeStamp = now;
-            db.WellCastLogs.Add(wellcastlog);
-            db.SaveChanges();
-            return db.WellCastLogs.AsEnumerable();
+            return View(db.WellCastLogs.ToList());
         }
 
-        // GET api/Log/5
-        public WellCastLog GetWellCastLog(int id)
+        //
+        // GET: /Log/Details/5
+
+        public ActionResult Details(int id = 0)
         {
             WellCastLog wellcastlog = db.WellCastLogs.Find(id);
             if (wellcastlog == null)
             {
-                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
+                return HttpNotFound();
             }
-
-            return wellcastlog;
+            return View(wellcastlog);
         }
 
-        // PUT api/Log/5
-        public HttpResponseMessage PutWellCastLog(int id, WellCastLog wellcastlog)
+        //
+        // GET: /Log/Create
+
+        public ActionResult Create()
         {
-            if (!ModelState.IsValid)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-            }
-
-            if (id != wellcastlog.ID)
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
-            }
-
-            db.Entry(wellcastlog).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
-            }
-
-            return Request.CreateResponse(HttpStatusCode.OK);
+            return View();
         }
 
-        // POST api/Log
-        public HttpResponseMessage PostWellCastLog(WellCastLog wellcastlog)
+        //
+        // POST: /Log/Create
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(WellCastLog wellcastlog)
         {
             if (ModelState.IsValid)
             {
                 db.WellCastLogs.Add(wellcastlog);
                 db.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, wellcastlog);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = wellcastlog.ID }));
-                return response;
-            }
-            else
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-            }
+            return View(wellcastlog);
         }
 
-        // DELETE api/Log/5
-        public HttpResponseMessage DeleteWellCastLog(int id)
+        //
+        // GET: /Log/Edit/5
+
+        public ActionResult Edit(int id = 0)
         {
             WellCastLog wellcastlog = db.WellCastLogs.Find(id);
             if (wellcastlog == null)
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
+                return HttpNotFound();
             }
+            return View(wellcastlog);
+        }
 
-            db.WellCastLogs.Remove(wellcastlog);
+        //
+        // POST: /Log/Edit/5
 
-            try
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(WellCastLog wellcastlog)
+        {
+            if (ModelState.IsValid)
             {
+                db.Entry(wellcastlog).State = EntityState.Modified;
                 db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            catch (DbUpdateConcurrencyException ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
-            }
+            return View(wellcastlog);
+        }
 
-            return Request.CreateResponse(HttpStatusCode.OK, wellcastlog);
+        //
+        // GET: /Log/Delete/5
+
+        public ActionResult Delete(int id = 0)
+        {
+            WellCastLog wellcastlog = db.WellCastLogs.Find(id);
+            if (wellcastlog == null)
+            {
+                return HttpNotFound();
+            }
+            return View(wellcastlog);
+        }
+
+        //
+        // POST: /Log/Delete/5
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            WellCastLog wellcastlog = db.WellCastLogs.Find(id);
+            db.WellCastLogs.Remove(wellcastlog);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
