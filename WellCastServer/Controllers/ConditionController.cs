@@ -24,7 +24,7 @@ namespace WellCastServer.Controllers
         //
         // GET: /Condition/Details/5
 
-        public ActionResult Details(Guid id)
+        public ActionResult Details(string id = null)
         {
             Condition condition = db.WellCastConditions.Find(id);
             if (condition == null)
@@ -51,7 +51,6 @@ namespace WellCastServer.Controllers
         {
             if (ModelState.IsValid)
             {
-                condition.ID = condition.Name;
                 db.WellCastConditions.Add(condition);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -63,7 +62,7 @@ namespace WellCastServer.Controllers
         //
         // GET: /Condition/Edit/5
 
-        public ActionResult Edit(Guid id)
+        public ActionResult Edit(string id = null)
         {
             Condition condition = db.WellCastConditions.Find(id);
             if (condition == null)
@@ -92,7 +91,7 @@ namespace WellCastServer.Controllers
         //
         // GET: /Condition/Delete/5
 
-        public ActionResult Delete(Guid id)
+        public ActionResult Delete(string id = null)
         {
             Condition condition = db.WellCastConditions.Find(id);
             if (condition == null)
@@ -107,7 +106,7 @@ namespace WellCastServer.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Guid id)
+        public ActionResult DeleteConfirmed(string id)
         {
             Condition condition = db.WellCastConditions.Find(id);
             db.WellCastConditions.Remove(condition);

@@ -38,65 +38,7 @@ namespace WellCastServer.Controllers
         //
         // GET: /ConditionProfile/Create
 
-        public ActionResult Create()
-        {
-            ViewBag.ConditionID = new SelectList(db.WellCastConditions, "ID", "Name");
-            ViewBag.ProfileID = new SelectList(db.WellCastProfiles, "ID", "Name");
-            return View();
-        }
-
-        //
-        // POST: /ConditionProfile/Create
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(ConditionProfile conditionprofile)
-        {
-            if (ModelState.IsValid)
-            {
-                conditionprofile.ID = Guid.NewGuid();
-                db.WellCastConditionProfiles.Add(conditionprofile);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.ConditionID = new SelectList(db.WellCastConditions, "ID", "Name", conditionprofile.ConditionID);
-            ViewBag.ProfileID = new SelectList(db.WellCastProfiles, "ID", "Name", conditionprofile.ProfileID);
-            return View(conditionprofile);
-        }
-
-        //
-        // GET: /ConditionProfile/Edit/5
-
-        public ActionResult Edit(Guid id)
-        {
-            ConditionProfile conditionprofile = db.WellCastConditionProfiles.Find(id);
-            if (conditionprofile == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.ConditionID = new SelectList(db.WellCastConditions, "ID", "Name", conditionprofile.ConditionID);
-            ViewBag.ProfileID = new SelectList(db.WellCastProfiles, "ID", "Name", conditionprofile.ProfileID);
-            return View(conditionprofile);
-        }
-
-        //
-        // POST: /ConditionProfile/Edit/5
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(ConditionProfile conditionprofile)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(conditionprofile).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.ConditionID = new SelectList(db.WellCastConditions, "ID", "Name", conditionprofile.ConditionID);
-            ViewBag.ProfileID = new SelectList(db.WellCastProfiles, "ID", "Name", conditionprofile.ProfileID);
-            return View(conditionprofile);
-        }
+    
 
         //
         // GET: /ConditionProfile/Delete/5

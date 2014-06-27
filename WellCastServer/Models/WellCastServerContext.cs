@@ -27,17 +27,21 @@ namespace WellCastServer.Models
 
         public DbSet<WellCastLog> WellCastLogs { get; set; }
 
-        public DbSet<Location> WellCastLocations { get; set; }
+    //    public DbSet<Location> WellCastLocations { get; set; }
 
         public DbSet<ConditionProfile> WellCastConditionProfiles { get; set; }
 
-        public DbSet<Profile> WellCastProfiles { get; set; }
+    //    public DbSet<Profile> WellCastProfiles { get; set; }
 
-        public DbSet<User> WellCastUsers { get; set; }
+    //    public DbSet<User> WellCastUsers { get; set; }
 
         public DbSet<ConditionForecast> WellCastConditionForecasts { get; set; }
 
         public DbSet<Forecast> WellCastForecasts { get; set; }
+
+        public DbSet<Profile> Profiles { get; set; }
+
+        public DbSet<Location> Locations { get; set; }
 
     }
 }

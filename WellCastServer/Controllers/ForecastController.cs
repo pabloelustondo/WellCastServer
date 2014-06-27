@@ -18,8 +18,7 @@ namespace WellCastServer.Controllers
 
         public ActionResult Index()
         {
-            var forecasts = db.WellCastForecasts;
-            return View(forecasts.ToList());
+            return View(db.WellCastForecasts.ToList());
         }
 
         //
@@ -40,8 +39,6 @@ namespace WellCastServer.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.ProfileID = new SelectList(db.WellCastProfiles, "ID", "Name");
-            ViewBag.LocationID = new SelectList(db.WellCastLocations, "ID", "Name");
             return View();
         }
 
@@ -60,8 +57,6 @@ namespace WellCastServer.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ProfileID = new SelectList(db.WellCastProfiles, "ID", "Name", forecast.ProfileID);
-            ViewBag.LocationID = new SelectList(db.WellCastLocations, "ID", "Name", forecast.LocationID);
             return View(forecast);
         }
 
@@ -75,8 +70,6 @@ namespace WellCastServer.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ProfileID = new SelectList(db.WellCastProfiles, "ID", "Name", forecast.ProfileID);
-            ViewBag.LocationID = new SelectList(db.WellCastLocations, "ID", "Name", forecast.LocationID);
             return View(forecast);
         }
 
@@ -93,8 +86,6 @@ namespace WellCastServer.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ProfileID = new SelectList(db.WellCastProfiles, "ID", "Name", forecast.ProfileID);
-            ViewBag.LocationID = new SelectList(db.WellCastLocations, "ID", "Name", forecast.LocationID);
             return View(forecast);
         }
 

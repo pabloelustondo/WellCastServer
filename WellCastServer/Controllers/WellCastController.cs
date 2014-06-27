@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WellCastServer.Models;
 
 namespace WellCastServer.Controllers
 {
     public class WellCastController : Controller
     {
         public MongoDatabase mdb;
+        public WellCastServerContext db = new WellCastServerContext();
+        public WellCastServerEngine wellCastServerEngine = new WellCastServerEngine();
         //
         // GET: /WellCast/
         protected override void OnActionExecuting(ActionExecutingContext filterContext) {

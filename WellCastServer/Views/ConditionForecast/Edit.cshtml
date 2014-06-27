@@ -14,6 +14,14 @@
         <legend>ConditionForecast</legend>
 
         <div class="editor-label">
+            @Html.LabelFor(model => model.ForecastID, "Forecast")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ForecastID", String.Empty)
+            @Html.ValidationMessageFor(model => model.ForecastID)
+        </div>
+
+        <div class="editor-label">
             @Html.LabelFor(model => model.ProfileID, "Profile")
         </div>
         <div class="editor-field">

@@ -197,19 +197,16 @@
     <Compile Include="Controllers\ForecastController.cs" />
     <Compile Include="Controllers\ForecastsController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
-    <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Controllers\MetaDefinitionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
-    <Compile Include="Controllers\ProfilesController.cs" />
     <Compile Include="Controllers\SymptomCategoriesController.cs" />
     <Compile Include="Controllers\SymptomCategoryController.cs" />
     <Compile Include="Controllers\SymptomController.cs" />
     <Compile Include="Controllers\SymptomsController.cs" />
     <Compile Include="Controllers\TestMongoController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\WellCastController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="ForecastEngine\WellCastServerEngine.cs">
@@ -218,9 +215,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201406252113079_initial.cs" />
-    <Compile Include="Migrations\201406252113079_initial.Designer.cs">
-      <DependentUpon>201406252113079_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201406271556372_inital.cs" />
+    <Compile Include="Migrations\201406271556372_inital.Designer.cs">
+      <DependentUpon>201406271556372_inital.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -427,8 +424,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201406252113079_initial.resx">
-      <DependentUpon>201406252113079_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201406271556372_inital.resx">
+      <DependentUpon>201406271556372_inital.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

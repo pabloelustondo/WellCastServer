@@ -7,18 +7,16 @@ using WellCastServer.Models;
 
 namespace WellCastServer.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : WellCastController
     {
-        private WellCastServerContext db = new WellCastServerContext();
+   
         public ActionResult Index()
         {
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
             ViewBag.conditions = db.WellCastConditions.ToList();
             ViewBag.symptomCategories = db.WellCastSymptomCategories.ToList();
             ViewBag.symptoms = db.WellCastSymptoms.ToList();
-            ViewBag.locations = db.WellCastLocations.ToList();
-            ViewBag.profiles = db.WellCastProfiles.ToList();
-            ViewBag.users = db.WellCastUsers.ToList();
+
             ViewBag.forecasts = db.WellCastForecasts.ToList();
             return View();
         }
@@ -32,7 +30,7 @@ namespace WellCastServer.Controllers
 
         public ActionResult deleteForecast()
         {
-            WellCastServerEngine wellCastServerEngine = new WellCastServerEngine();
+
             ViewBag.message = wellCastServerEngine.deleteForecast();
 
             return View();

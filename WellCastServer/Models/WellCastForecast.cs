@@ -8,15 +8,10 @@ namespace WellCastServer.Models
 {
     public class Forecast: WellCastRelation
     {
+        public String UserMID { get; set; }
+        public String ProfileMID { get; set; }
+        public String LocationMID { get; set; }
 
-        public String ProfileID { get; set; }
-
-        [Newtonsoft.Json.JsonIgnore]
-        public virtual Profile Profile { get; set; }
-
-        public String LocationID { get; set; }
-        [Newtonsoft.Json.JsonIgnore]
-        public virtual Location Location { get; set; }
 
         [Newtonsoft.Json.JsonIgnore]
         public virtual ICollection<ConditionForecast> ConditionForecasts { get; set; }

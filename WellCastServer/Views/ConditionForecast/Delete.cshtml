@@ -11,24 +11,31 @@
     <legend>ConditionForecast</legend>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Profile.Name)
+         @Html.DisplayNameFor(model => model.Forecast.UserMID)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Profile.Name)
+        @Html.DisplayFor(model => model.Forecast.UserMID)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Location.Name)
+         @Html.DisplayNameFor(model => model.Profile.UserID)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Location.Name)
+        @Html.DisplayFor(model => model.Profile.UserID)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Condition.Name)
+         @Html.DisplayNameFor(model => model.Location.UserID)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Condition.Name)
+        @Html.DisplayFor(model => model.Location.UserID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Condition.KeyName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Condition.KeyName)
     </div>
 
     <div class="display-label">

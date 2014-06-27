@@ -13,11 +13,10 @@ namespace WellCastServer.Models
         [Newtonsoft.Json.JsonIgnore]
         public virtual Forecast Forecast { get; set; }
 
-        public String ProfileID { get; set; }
-        public virtual Profile Profile { get; set; }
+        public String ProfileMID { get; set; }
 
-        public String LocationID { get; set; }
-        public virtual Location Location { get; set; }
+        public String LocationMID { get; set; }
+
 
         public String ConditionID { get; set; }
         public virtual Condition Condition { get; set; }

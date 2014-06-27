@@ -7,6 +7,7 @@ namespace WellCastServer.Models
 {
     public class Condition: WellCastEntityWithKeyName
     {
+        public bool Validated { get; set; }
         public virtual List<String> SymptomKeys
         {
             get

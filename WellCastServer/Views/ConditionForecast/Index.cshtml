@@ -12,16 +12,16 @@
 <table>
     <tr>
         <th>
-            User
+            @Html.DisplayNameFor(model => model.Forecast.UserMID)
         </th>
         <th>
-            Profile
+            @Html.DisplayNameFor(model => model.Profile.UserID)
         </th>
         <th>
-            Location
+            @Html.DisplayNameFor(model => model.Location.UserID)
         </th>
         <th>
-            Condition
+            @Html.DisplayNameFor(model => model.Condition.KeyName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Date)
@@ -50,16 +50,16 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Profile.User.Name)
+            @Html.DisplayFor(modelItem => item.Forecast.UserMID)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Profile.Name)
+            @Html.DisplayFor(modelItem => item.Profile.UserID)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Location.Name)
+            @Html.DisplayFor(modelItem => item.Location.UserID)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Condition.Name)
+            @Html.DisplayFor(modelItem => item.Condition.KeyName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Date)

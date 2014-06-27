@@ -29,112 +29,13 @@ namespace WellCastServer.Controllers
                 catch (Exception) { };
                 try { wlocation.Name = mlocation["name"].ToString(); }
                 catch (Exception) { };
-                try { wlocation.UserID = mlocation["location_id"].ToString(); }
-                catch (Exception) { };
 
                 wlocations.Add(wlocation);
             }
             return View(wlocations);
         }
 
-        //
-        // GET: /Location/Details/5
-
-        public ActionResult Details(Guid id)
-        {
-            Location location = db.WellCastLocations.Find(id);
-            if (location == null)
-            {
-                return HttpNotFound();
-            }
-            return View(location);
-        }
-
-        //
-        // GET: /Location/Create
-
-        public ActionResult Create()
-        {
-            ViewBag.UserID = new SelectList(db.WellCastUsers, "ID", "Name");
-            return View();
-        }
-
-        //
-        // POST: /Location/Create
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Location location)
-        {
-            if (ModelState.IsValid)
-            {
-                location.ID = location.Name;
-                db.WellCastLocations.Add(location);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.UserID = new SelectList(db.WellCastUsers, "ID", "Name", location.UserID);
-            return View(location);
-        }
-
-        //
-        // GET: /Location/Edit/5
-
-        public ActionResult Edit(Guid id)
-        {
-            Location location = db.WellCastLocations.Find(id);
-            if (location == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.UserID = new SelectList(db.WellCastUsers, "ID", "Name", location.UserID);
-            return View(location);
-        }
-
-        //
-        // POST: /Location/Edit/5
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(Location location)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(location).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.UserID = new SelectList(db.WellCastUsers, "ID", "Name", location.UserID);
-            return View(location);
-        }
-
-        //
-        // GET: /Location/Delete/5
-
-        public ActionResult Delete(Guid id)
-        {
-            Location location = db.WellCastLocations.Find(id);
-            if (location == null)
-            {
-                return HttpNotFound();
-            }
-            return View(location);
-        }
-
-        //
-        // POST: /Location/Delete/5
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Guid id)
-        {
-            Location location = db.WellCastLocations.Find(id);
-            db.WellCastLocations.Remove(location);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
+   
         protected override void Dispose(bool disposing)
         {
             db.Dispose();

@@ -12,6 +12,9 @@
 <table>
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Validated)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.KeyName)
         </th>
         <th>
@@ -25,6 +28,9 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Validated)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.KeyName)
         </td>
