@@ -10,7 +10,9 @@
         <td>
             @{
 
-            String firstSymptomCategory = ViewBag.symptomCategories[0].ID;
+                String firstSymptomCategory = "there are not symptomCategories defined";
+                try { firstSymptomCategory = ViewBag.symptomCategories[0].ID; }
+                catch (Exception) { }
         }
             <a href="./api/SymptomCategories/GetSymptomCategories/@firstSymptomCategory.ToString()">GET: /api/SymptomCategories/GetSymptomCategories/@firstSymptomCategory.ToString()</a>
     </td>
@@ -22,7 +24,12 @@
         <td>
             @{
 
-            String firstSymptom = ViewBag.symptoms[0].ID;
+            String firstSymptom="there are not symptoms defined";
+
+            try { firstSymptom = ViewBag.symptoms[0].ID; }
+            catch (Exception) { 
+            
+            }
         }
             <a href="./api/Symptoms/GetSymptoms/@firstSymptom.ToString()">GET: /api/Symptoms/GetSymptoms/@firstSymptom.ToString()</a>
     </td>
@@ -34,7 +41,9 @@
         </td>
         <td>@{
             
-            String firstCondition = ViewBag.conditions[0].ID;
+            String firstCondition = "there are not conditions defined";
+            try { firstCondition = ViewBag.conditions[0].ID; }
+            catch (Exception) { }
         }
             <a href="./api/Conditions/GetConditions/@firstCondition.ToString()">GET: /api/Conditions/GetConditions/@firstCondition.ToString()</a>
         </td>

@@ -9,6 +9,15 @@ namespace WellCastServer.Models
 
     public class Symptom: WellCastEntityWithKeyName
     {
+        /*
+         *          "name":"Trouble Breathing",
+         "symptom_category":"Breathing",
+         "_id":"5366faac82f752bd059b6606",
+         "conditions":[  
+            "copd",
+            "asthma"
+         ],
+         */
         public virtual List<String> ConditionKeys
         {
             get

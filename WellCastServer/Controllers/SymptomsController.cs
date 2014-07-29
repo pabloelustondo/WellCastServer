@@ -17,46 +17,21 @@ namespace WellCastServer.Controllers
         private WellCastServerContext db = new WellCastServerContext();
 
         // GET api/Symptoms
-        public WellCastEnvelope<IEnumerable<Symptom>> GetSymptoms()
+        public IEnumerable<Symptom> GetSymptoms()
         {
             var symptoms = db.WellCastSymptoms.AsEnumerable();
             var envelop = new WellCastEnvelope<IEnumerable<Symptom>>(symptoms);
-            return envelop;
+            return symptoms;
         }
 
         // GET api/Symptoms/5
-        public WellCastEnvelope<Symptom> GetSymptom(String id)
+        public Symptom GetSymptom(String id)
         {
             WellCastEnvelope<Symptom> envelope;
-            try
-            {
-                Guid gid = new Guid(id);
-                Symptom symptom = db.WellCastSymptoms.Find(gid);
-                envelope = new WellCastEnvelope<Symptom>(symptom);
-
-                if (symptom == null)
-                {
-                    envelope.meta.status = WellCastStatusList.NonExistingId.code;
-                }
-
-            }
-            catch (Exception e)
-            {
-                envelope = new WellCastEnvelope<Symptom>(null);
-                if (e.Message.Contains("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"))
-                {
-
-                    envelope.meta.status = WellCastStatusList.InvalidId.code;
-                    envelope.meta.message = e.Message;
-
-                }
-                else
-                {
-                    envelope.meta.status = WellCastStatusList.Exception.code;
-                    envelope.meta.message = e.Message;
-                }
-            }
-            return envelope;
+            Guid gid = new Guid(id);
+            Symptom symptom = db.WellCastSymptoms.Find(gid);
+          
+            return symptom;
         }
         // PUT api/Symptoms/5
         public HttpResponseMessage PutSymptom(String id, Symptom symptom)

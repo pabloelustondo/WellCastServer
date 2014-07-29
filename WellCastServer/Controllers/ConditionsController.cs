@@ -17,42 +17,19 @@ namespace WellCastServer.Controllers
         private WellCastServerContext db = new WellCastServerContext();
 
         // GET api/Conditions
-        public WellCastEnvelope<IEnumerable<Condition>> GetConditions()
+        public IEnumerable<Condition> GetConditions()
         {
              var conditions = db.WellCastConditions.AsEnumerable();
-             var envelop = new WellCastEnvelope<IEnumerable<Condition>>(conditions);
-             return envelop;
+             return conditions;
         }
 
         // GET api/Conditions/5
-        public WellCastEnvelope<Condition> GetCondition(String id)
+        public Condition GetCondition(String id)
         {
-            WellCastEnvelope<Condition> envelope;
-            try { 
+
             Guid gid = new Guid(id);
             Condition condition = db.WellCastConditions.Find(gid);
-            envelope = new WellCastEnvelope<Condition>(condition);
-
-            if (condition == null)
-            {
-                envelope.meta.status = WellCastStatusList.NonExistingId.code;
-            }
-
-            }
-            catch (Exception e)
-            {
-                envelope = new WellCastEnvelope<Condition>(null);
-                if (e.Message.Contains("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")){
-                    
-                envelope.meta.status = WellCastStatusList.InvalidId.code;
-                envelope.meta.message = e.Message;
-                
-                }else{
-                envelope.meta.status = WellCastStatusList.Exception.code;
-                envelope.meta.message = e.Message;
-                    }
-            }
-            return envelope;
+            return condition;
         }
 
         // PUT api/Conditions/5
