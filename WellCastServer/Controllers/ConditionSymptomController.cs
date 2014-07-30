@@ -40,8 +40,8 @@ namespace WellCastServer.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.ConditionID = new SelectList(db.WellCastConditions, "ID", "Name");
-            ViewBag.SymptomID = new SelectList(db.WellCastSymptoms, "ID", "Name");
+            ViewBag.ConditionID = new SelectList(db.WellCastConditions, "ID", "KeyName");
+            ViewBag.SymptomID = new SelectList(db.WellCastSymptoms, "ID", "KeyName");
             return View();
         }
 
@@ -60,8 +60,8 @@ namespace WellCastServer.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ConditionID = new SelectList(db.WellCastConditions, "ID", "Name", conditionsymptom.ConditionID);
-            ViewBag.SymptomID = new SelectList(db.WellCastSymptoms, "ID", "Name", conditionsymptom.SymptomID);
+            ViewBag.ConditionID = new SelectList(db.WellCastConditions, "ID", "KeyName", conditionsymptom.ConditionID);
+            ViewBag.SymptomID = new SelectList(db.WellCastSymptoms, "ID", "SymptomCategoryID", conditionsymptom.SymptomID);
             return View(conditionsymptom);
         }
 
@@ -75,8 +75,8 @@ namespace WellCastServer.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ConditionID = new SelectList(db.WellCastConditions, "ID", "Name", conditionsymptom.ConditionID);
-            ViewBag.SymptomID = new SelectList(db.WellCastSymptoms, "ID", "Name", conditionsymptom.SymptomID);
+            ViewBag.ConditionID = new SelectList(db.WellCastConditions, "ID", "KeyName", conditionsymptom.ConditionID);
+            ViewBag.SymptomID = new SelectList(db.WellCastSymptoms, "ID", "SymptomCategoryID", conditionsymptom.SymptomID);
             return View(conditionsymptom);
         }
 
@@ -93,8 +93,8 @@ namespace WellCastServer.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ConditionID = new SelectList(db.WellCastConditions, "ID", "Name", conditionsymptom.ConditionID);
-            ViewBag.SymptomID = new SelectList(db.WellCastSymptoms, "ID", "Name", conditionsymptom.SymptomID);
+            ViewBag.ConditionID = new SelectList(db.WellCastConditions, "ID", "KeyName", conditionsymptom.ConditionID);
+            ViewBag.SymptomID = new SelectList(db.WellCastSymptoms, "ID", "SymptomCategoryID", conditionsymptom.SymptomID);
             return View(conditionsymptom);
         }
 

@@ -24,7 +24,7 @@ namespace WellCastServer.Controllers
             {
                 Profile wprofile = new Profile();
                 try { wprofile.ID = mprofile["_id"].ToString(); } catch (Exception) { };
-                try { wprofile.Name = mprofile["name"].ToString(); } catch (Exception) { };
+                try { wprofile.name = mprofile["name"].ToString(); } catch (Exception) { };
                 try { wprofile.Age = Convert.ToInt16(mprofile["age"].ToString()); } catch (Exception) { };
                 try { wprofile.Gender = mprofile["gender"].ToString(); } catch (Exception) { };
                 try { wprofile.UserID = mprofile["profile_id"].ToString(); } catch (Exception) { };

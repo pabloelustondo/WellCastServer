@@ -90,9 +90,9 @@ namespace WellCastServer
                         Location wlocation = new Location();
                         try { wlocation.ID = mlocation["_id"].ToString(); }
                         catch (Exception) { };
-                        try { wlocation.Name = mlocation["name"].ToString(); }
+                        try { wlocation.name = mlocation["name"].ToString(); }
                         catch (Exception) { };
-                        try { wlocation.Description = mlocation["description"].ToString(); }
+                        try { wlocation.description = mlocation["description"].ToString(); }
                         catch (Exception) { };
 
                         try { wlocation.lat = Convert.ToDouble(mlocation["latitude"].ToString()); }
@@ -120,7 +120,7 @@ namespace WellCastServer
                         Profile wprofile = new Profile();
                         try { wprofile.ID = mprofile["_id"].ToString(); }
                         catch (Exception) { };
-                        try { wprofile.Name = mprofile["name"].ToString(); }
+                        try { wprofile.name = mprofile["name"].ToString(); }
                         catch (Exception) { };
                         try { wprofile.Gender = mprofile["gender"].ToString(); }
                         catch (Exception) { };
@@ -180,16 +180,17 @@ namespace WellCastServer
 
             var users = getAllUsers();
             var conditions = db.WellCastConditions.ToList();
-            List<Condition> conditionSubset;
 
             int loops = 0;
             Random rnd1 = new Random();
+            if (users == null) return "no users";
             foreach (var user in users) 
             {
                 loops++;
+                if (user.Profiles == null) break;
             foreach (var profile in user.Profiles)
             {
-
+                if (user.Locations == null) break;
                 foreach (var location in user.Locations)
                 {
 
@@ -219,7 +220,7 @@ namespace WellCastServer
 
                         db.WellCastForecasts.Add(forecast);
                         db.SaveChanges();
-
+                        if (profile.ConditionIDs == null) break;
                         foreach (var conditionKeyName in profile.ConditionIDs)
                         {
                             Condition condition = new Condition();
@@ -234,8 +235,8 @@ namespace WellCastServer
                                     condition = new Condition();
                                     condition.ID = conditionKeyName;
                                     condition.KeyName = conditionKeyName;
-                                    condition.Name = conditionKeyName;
-                                    condition.Description = conditionKeyName;
+                                    condition.name = conditionKeyName;
+                                    condition.description = conditionKeyName;
                                     condition.Validated = false;
                                     db.WellCastConditions.Add(condition);
                                     db.SaveChanges();

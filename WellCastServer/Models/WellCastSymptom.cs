@@ -18,7 +18,7 @@ namespace WellCastServer.Models
             "asthma"
          ],
          */
-        public virtual List<String> ConditionKeys
+        public virtual List<String> conditions
         {
             get
             {
@@ -35,7 +35,10 @@ namespace WellCastServer.Models
         [Newtonsoft.Json.JsonIgnore]
         public virtual ICollection<ConditionSymptom> ConditionSymptoms { get; set; }
 
+        [Newtonsoft.Json.JsonIgnore]
         public string SymptomCategoryID { get; set; }
+
+        public string symptom_category { get { return SymptomCategoryID; } }
 
         [Newtonsoft.Json.JsonIgnore]
         public virtual SymptomCategory SymptomCategory { get; set; }

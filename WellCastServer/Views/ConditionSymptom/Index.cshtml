@@ -12,10 +12,13 @@
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Condition.Name)
+            Condition
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Symptom.Name)
+           Symptom
+        </th>
+        <th>
+            SymptomCategory
         </th>
         <th></th>
     </tr>
@@ -23,10 +26,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Condition.Name)
+            @Html.DisplayFor(modelItem => item.Condition.KeyName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Symptom.Name)
+            @Html.DisplayFor(modelItem => item.Symptom.KeyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Symptom.SymptomCategory.KeyName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

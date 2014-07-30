@@ -51,7 +51,7 @@ namespace WellCastServer.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (symptomcategory.ID == null) { symptomcategory.ID = symptomcategory.KeyName; };
+                symptomcategory.ID = symptomcategory.KeyName;
                 db.WellCastSymptomCategories.Add(symptomcategory);
                 db.SaveChanges();
                 return RedirectToAction("Index");

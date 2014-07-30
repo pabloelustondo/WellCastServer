@@ -27,7 +27,7 @@ namespace WellCastServer.Controllers
                 Location wlocation = new Location();
                 try { wlocation.ID = mlocation["_id"].ToString(); }
                 catch (Exception) { };
-                try { wlocation.Name = mlocation["name"].ToString(); }
+                try { wlocation.name = mlocation["name"].ToString(); }
                 catch (Exception) { };
 
                 wlocations.Add(wlocation);

@@ -7,6 +7,7 @@ namespace WellCastServer.Models
 {
     public class WellCastEntityWithKeyName: WellCastEntity
     {
+        [Newtonsoft.Json.JsonIgnore]
         public string KeyName { get; set; }       
       }
 }
