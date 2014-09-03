@@ -7,13 +7,12 @@ namespace WellCastServer.Models
 {
     public class Report
     {
-        [Newtonsoft.Json.JsonIgnore]
-        public int ID { get; set; }
+        public int _id { get; set; }
 
-        public DateTime Date { get; set; }
-        public int Risk { get; set; }
-        public string ReportNote { get; set; }
+        public DateTime date { get; set; }
+        public int risk { get; set; }
+        public string report { get; set; }
 
-        public List<ConditionReport> conditionReports { get; set; }
+        public List<ConditionReport> conditions { get; set; }
     }
 }

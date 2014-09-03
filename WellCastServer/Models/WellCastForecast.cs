@@ -8,15 +8,26 @@ namespace WellCastServer.Models
 {
     public class Forecast: WellCastRelation
     {
+          [Newtonsoft.Json.JsonIgnore]
         public String UserMID { get; set; }
+        public String user_id { get { return UserMID; } }
+
+          [Newtonsoft.Json.JsonIgnore]
         public String ProfileMID { get; set; }
+        public String profile_id { get { return ProfileMID; } }
+
+          [Newtonsoft.Json.JsonIgnore]
         public String LocationMID { get; set; }
+        public String location_id { get { return LocationMID; } }
 
 
         [Newtonsoft.Json.JsonIgnore]
         public virtual ICollection<ConditionForecast> ConditionForecasts { get; set; }
-
+            
+        [Newtonsoft.Json.JsonIgnore]
         public DateTime Date { get; set; }
+        public String date { get { return Date.ToShortDateString(); } }
+
                [Newtonsoft.Json.JsonIgnore]
         public int RiskDay0 { get; set; }
                [Newtonsoft.Json.JsonIgnore]
@@ -70,23 +81,23 @@ namespace WellCastServer.Models
         } } 
 
         [NotMapped]
-        public virtual List<Report> Reports { 
+        public virtual List<Report> report { 
             get{
 
                 var reports = new List<Report>();
                 for (int d = 0; d < 6; d++) { 
                 var report = new Report();
 
-                report.Date = Date.AddDays(d);
-                report.Risk = RiskDay[d];
-                report.ReportNote = ReportDay[d];
-                report.conditionReports = new List<ConditionReport>();
+                report.date = Date.AddDays(d);
+                report.risk = RiskDay[d];
+                report.report = ReportDay[d];
+                report.conditions = new List<ConditionReport>();
                 foreach (var conditionForecast in ConditionForecasts)
                 {
                     var conditionReport = new ConditionReport();
-                    conditionReport.ConditionKey = conditionForecast.Condition.KeyName;
-                    conditionReport.Risk = conditionForecast.RiskDay[d];
-                    report.conditionReports.Add(conditionReport);
+                    conditionReport.condition_id = conditionForecast.Condition.KeyName;
+                    conditionReport.risk = conditionForecast.RiskDay[d];
+                    report.conditions.Add(conditionReport);
                 }
 
                 reports.Add(report);

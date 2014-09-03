@@ -15,118 +15,64 @@ namespace WellCastServer.Controllers
     public class ForecastsController : ApiController
     {
         private WellCastServerContext db = new WellCastServerContext();
+        public WellCastServerEngine wellCastServerEngine = new WellCastServerEngine();
 
         // GET api/Forecasts
-        public WellCastEnvelope<IEnumerable<Forecast>> GetForecasts()
+        public IEnumerable<Forecast> GetForecasts()
         {
             var conditions = db.WellCastForecasts.AsEnumerable();
             var envelop = new WellCastEnvelope<IEnumerable<Forecast>>(conditions);
-            return envelop;
+            return conditions;
         }
 
         // GET api/Forecasts/5
-        public WellCastEnvelope<Forecast> GetForecast(String id)
+        public Forecast GetForecast(String id)
         {
-            WellCastEnvelope<Forecast> envelope;
-            try
-            {
+
                 Guid gid = new Guid(id);
                 Forecast condition = db.WellCastForecasts.Find(gid);
-                envelope = new WellCastEnvelope<Forecast>(condition);
 
-                if (condition == null)
-                {
-                    envelope.meta.status = WellCastStatusList.NonExistingId.code;
-                }
-
-            }
-            catch (Exception e)
-            {
-                envelope = new WellCastEnvelope<Forecast>(null);
-                if (e.Message.Contains("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"))
-                {
-
-                    envelope.meta.status = WellCastStatusList.InvalidId.code;
-                    envelope.meta.message = e.Message;
-
-                }
-                else
-                {
-                    envelope.meta.status = WellCastStatusList.Exception.code;
-                    envelope.meta.message = e.Message;
-                }
-            }
-            return envelope;
+                return condition;
         }
 
         // GET api/Forecasts/5
-        public WellCastEnvelope<List<Forecast>> GetForecastsForUser(String userid)
+        public List<Forecast> GetForecastsForUser(String user_id)
         {
-            WellCastEnvelope<List<Forecast>> envelope;
-            try
-            
-            {
-                String UserIdGuid = userid;
-                List<Forecast> conditions = db.WellCastForecasts.Where(f => f.UserMID == UserIdGuid).ToList();
-                envelope = new WellCastEnvelope<List<Forecast>>(conditions);
+                //here is the idea. If we have forecast of a reasonable date and one for each location and profile...then we return this
+                //if not we calculate profiles for the user
+                User user = wellCastServerEngine.getUser(user_id);
+                String UserIdGuid = user_id;
+                DateTime LastDate = db.WellCastForecasts.Where(f => f.UserMID == UserIdGuid).Max(f => f.Date);
 
-                if (conditions == null)
-                {
-                    envelope.meta.status = WellCastStatusList.NonExistingId.code;
-                }
-
-            }
-            catch (Exception e)
-            {
-                envelope = new WellCastEnvelope<List<Forecast>>(null);
-                if (e.Message.Contains("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"))
+                if ((DateTime.Now - LastDate).TotalMinutes < wellCastServerEngine.MaxAgeMinutes)
                 {
 
-                    envelope.meta.status = WellCastStatusList.InvalidId.code;
-                    envelope.meta.message = e.Message;
+                    int numberOfProfiles = (user.ProfileMIDs!=null)?user.ProfileMIDs.Count():0;
+                    int numberOfLocations = (user.LocationMIDs != null) ? user.LocationMIDs.Count() : 0;
 
+
+                    List<Forecast> conditions = db.WellCastForecasts.Where(f => f.UserMID == UserIdGuid && f.Date == LastDate).ToList();
+
+                    if (conditions.Count == numberOfLocations * numberOfProfiles)
+                    {
+                        return conditions;
+                    }
                 }
-                else
-                {
-                    envelope.meta.status = WellCastStatusList.Exception.code;
-                    envelope.meta.message = e.Message;
-                }
-            }
-            return envelope;
+
+                //if we are here, something did not go well.. so we recalculate forecast for user and start again.
+
+                wellCastServerEngine.calculateNewForecastForUser(user);
+                List<Forecast> conditions2 = db.WellCastForecasts.Where(f => f.UserMID == UserIdGuid && f.Date == LastDate).ToList();
+                return conditions2;             
         }
 
         // GET api/Forecasts/5
-        public WellCastEnvelope<List<Forecast>> GetForecastsForProfile(String profileid)
+        public List<Forecast> GetForecastsForProfile(String profile_id)
         {
-            WellCastEnvelope<List<Forecast>> envelope;
-            try
-            {
-                List<Forecast> conditions = db.WellCastForecasts.Where(f => f.ProfileMID == profileid).ToList();
-                envelope = new WellCastEnvelope<List<Forecast>>(conditions);
 
-                if (conditions == null)
-                {
-                    envelope.meta.status = WellCastStatusList.NonExistingId.code;
-                }
+            List<Forecast> conditions = db.WellCastForecasts.Where(f => f.ProfileMID == profile_id).ToList();
 
-            }
-            catch (Exception e)
-            {
-                envelope = new WellCastEnvelope<List<Forecast>>(null);
-                if (e.Message.Contains("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"))
-                {
-
-                    envelope.meta.status = WellCastStatusList.InvalidId.code;
-                    envelope.meta.message = e.Message;
-
-                }
-                else
-                {
-                    envelope.meta.status = WellCastStatusList.Exception.code;
-                    envelope.meta.message = e.Message;
-                }
-            }
-            return envelope;
+            return conditions;
         }
 
         // PUT api/Forecasts/5

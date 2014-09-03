@@ -223,6 +223,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\MongoEntity.cs" />
     <Compile Include="Models\MongoUser.cs" />
+    <Compile Include="Models\WellCastCondition - Copy.cs" />
     <Compile Include="Models\WellCastConditionReport.cs" />
     <Compile Include="Models\DatabaseContextInitializer.cs" />
     <Compile Include="Models\WellCastForecast.cs" />
@@ -306,7 +307,16 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Models\WellCastModel.cd" />
+    <None Include="Properties\PublishProfiles\wellcastserver %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\wellcastserver - FTP %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\wellcastserver - FTP %283%29.pubxml" />
+    <None Include="Properties\PublishProfiles\wellcastserver - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\wellcastserver - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\wellcastserver - Web Deploy %283%29.pubxml" />
+    <None Include="Properties\PublishProfiles\wellcastserver - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\wellcastserver.pubxml" />
+    <None Include="Properties\PublishProfiles\wellcastserver2 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\wellcastserver2 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />

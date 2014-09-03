@@ -7,8 +7,12 @@ namespace WellCastServer.Models
 {
     public class Condition: WellCastEntityWithKeyName
     {
+       [Newtonsoft.Json.JsonIgnore]
         public bool Validated { get; set; }
-        public virtual List<String> SymptomKeys
+
+       public string condition_id { get { return KeyName; } }
+
+        public virtual List<String> symptoms
         {
             get
             {

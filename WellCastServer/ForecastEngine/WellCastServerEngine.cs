@@ -12,6 +12,7 @@ namespace WellCastServer
     {
         private WellCastServerContext db = new WellCastServerContext();
         public MongoDatabase mdb;
+        public int MaxAgeMinutes = 180;
 
         public WellCastServerEngine()
         {
@@ -45,6 +46,7 @@ namespace WellCastServer
         public User getOneUser() {
 
 
+            
             var musers = mdb.GetCollection("userDatas").FindAll();
             User wuser = new User();
             var muser = musers.First();
@@ -57,6 +59,31 @@ namespace WellCastServer
                     {
                         wuser.ProfileMIDs.Add(profileID.ToString());
                     }
+
+            return wuser;
+        }
+
+        public User getUser(string id)
+        {
+            var musers = mdb.GetCollection("userDatas").FindAll();
+            var muser = musers.Where(mu => mu["_id"].ToString() == id).First();
+            User wuser = new User();
+            var muserID = muser["_id"].ToString();
+            wuser.ID = muser["_id"].ToString();
+
+            var profileIDs = muser["profiles"].AsBsonArray.ToList();
+            wuser.ProfileMIDs = new List<string>();
+            foreach (var profileID in profileIDs)
+            {
+                wuser.ProfileMIDs.Add(profileID.ToString());
+            }
+
+            var locationIDs = muser["locations"].AsBsonArray.ToList();
+            wuser.LocationMIDs = new List<string>();
+            foreach (var locationID in locationIDs)
+            {
+                wuser.LocationMIDs.Add(locationID.ToString());
+            }
 
             return wuser;
         }
@@ -289,6 +316,135 @@ namespace WellCastServer
                 }//end for each location
             }//end for each profile
             }//end for each usser
+            db.SaveChanges();
+            returnMessage = "Forecast where calculated for date-hour: " + forecastingDate;
+            return returnMessage;
+        }
+
+        public string calculateNewForecastForUser(User user)
+        {
+            //this process will calculate forecast for all profiles, locations and conditions
+            //using corresponding the year, month, day and time slot
+
+            //for now I will calcualte this hour
+            string returnMessage = "Ok";
+            DateTime now = DateTime.Now;
+            DateTime forecastingDate = new DateTime(now.Year, now.Month, now.Day).AddHours(now.Hour);
+
+            DateTime lastforecast = new DateTime();
+
+            try { lastforecast = db.WellCastConditionForecasts.Select(f => f.Date).Max(); }
+            catch (Exception) { };
+
+            if (lastforecast == forecastingDate) { return "Forecast already calculated for date-hour: " + forecastingDate; };
+            //get all profiles
+
+            var conditions = db.WellCastConditions.ToList();
+
+            Random rnd1 = new Random();
+                if (user.Profiles == null) return "no user profiles";
+                foreach (var profile in user.Profiles)
+                {
+                    if (user.Locations == null) break;
+                    foreach (var location in user.Locations)
+                    {
+
+                        Forecast forecast = new Forecast();
+
+                        forecast.ProfileMID = profile.ID;
+                        forecast.LocationMID = location.ID;
+                        forecast.UserMID = user.ID;
+                        forecast.Date = forecastingDate;
+                        forecast.ID = Guid.NewGuid();
+
+                        //now the ramdom thing
+                        Random random = new Random();
+                        forecast.RiskDay0 = random.Next(0, 6);
+                        forecast.RiskDay1 = random.Next(0, 6);
+                        forecast.RiskDay2 = random.Next(0, 6);
+                        forecast.RiskDay3 = random.Next(0, 6);
+                        forecast.RiskDay4 = random.Next(0, 6);
+                        forecast.RiskDay5 = random.Next(0, 6);
+
+                        forecast.ReportDay0 = "";
+                        forecast.ReportDay1 = "";
+                        forecast.ReportDay2 = "";
+                        forecast.ReportDay3 = "";
+                        forecast.ReportDay4 = "";
+                        forecast.ReportDay5 = "";
+
+                        db.WellCastForecasts.Add(forecast);
+                        db.SaveChanges();
+                        if (profile.ConditionIDs == null) break;
+                        foreach (var conditionKeyName in profile.ConditionIDs)
+                        {
+                            Condition condition = new Condition();
+                            try
+                            {
+                                condition = db.WellCastConditions.Where(c => c.KeyName == conditionKeyName).First();
+                            }
+                            catch (Exception e)
+                            {
+                                if (e.Message == "Sequence contains no elements")
+                                {
+                                    try
+                                    {
+                                        condition = new Condition();
+                                        condition.ID = conditionKeyName;
+                                        condition.KeyName = conditionKeyName;
+                                        condition.name = conditionKeyName;
+                                        condition.description = conditionKeyName;
+                                        condition.Validated = false;
+                                        db.WellCastConditions.Add(condition);
+                                        db.SaveChanges();
+                                    }
+                                    catch (Exception e2)
+                                    {
+                                        logError("failed to create condition from mongo", e2.Message);
+                                    }
+                                }
+                            }
+
+                            if (conditionKeyName != null)
+                            {
+                                ConditionForecast conditionforecast = new ConditionForecast();
+                                conditionforecast.ForecastID = forecast.ID;
+                                conditionforecast.ProfileMID = profile.ID;
+                                conditionforecast.LocationMID = location.ID;
+                                conditionforecast.ConditionID = condition.ID;
+                                conditionforecast.Date = forecastingDate;
+                                conditionforecast.ID = Guid.NewGuid();
+
+                                //now the ramdom thing
+                                conditionforecast.RiskDay0 = random.Next(0, 6);
+                                if (conditionforecast.RiskDay0 > 2) forecast.ReportDay0 += "risk of " + conditionKeyName;
+                                conditionforecast.RiskDay1 = random.Next(0, 6);
+                                if (conditionforecast.RiskDay1 > 2) forecast.ReportDay1 += "risk of " + conditionKeyName;
+                                conditionforecast.RiskDay2 = random.Next(0, 6);
+                                if (conditionforecast.RiskDay2 > 2) forecast.ReportDay2 += "risk of " + conditionKeyName;
+                                conditionforecast.RiskDay3 = random.Next(0, 6);
+                                if (conditionforecast.RiskDay3 > 2) forecast.ReportDay3 += "risk of " + conditionKeyName;
+                                conditionforecast.RiskDay4 = random.Next(0, 6);
+                                if (conditionforecast.RiskDay4 > 2) forecast.ReportDay4 += "risk of " + conditionKeyName;
+                                conditionforecast.RiskDay5 = random.Next(0, 6);
+                                if (conditionforecast.RiskDay5 > 2) forecast.ReportDay5 += "risk of " + conditionKeyName;
+
+
+                                db.WellCastConditionForecasts.Add(conditionforecast);
+                            }
+                        }
+
+                        if (forecast.ReportDay0 == "") forecast.ReportDay0 = "no reported risk today";
+                        if (forecast.ReportDay1 == "") forecast.ReportDay1 = "no reported risk today";
+                        if (forecast.ReportDay2 == "") forecast.ReportDay2 = "no reported risk today";
+                        if (forecast.ReportDay3 == "") forecast.ReportDay3 = "no reported risk today";
+                        if (forecast.ReportDay4 == "") forecast.ReportDay4 = "no reported risk today";
+                        if (forecast.ReportDay5 == "") forecast.ReportDay5 = "no reported risk today";
+
+                        db.Entry(forecast).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }//end for each location
+                }//end for each profile
             db.SaveChanges();
             returnMessage = "Forecast where calculated for date-hour: " + forecastingDate;
             return returnMessage;

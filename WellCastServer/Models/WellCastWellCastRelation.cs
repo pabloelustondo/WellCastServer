@@ -7,7 +7,9 @@ namespace WellCastServer.Models
 {
     public class WellCastRelation
     {
+        [Newtonsoft.Json.JsonIgnore]
         public Guid ID { get; set; }
+        public string _id { get { return ID.ToString(); } }
 
         public WellCastRelation() {
 

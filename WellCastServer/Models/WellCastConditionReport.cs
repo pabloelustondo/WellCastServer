@@ -7,9 +7,8 @@ namespace WellCastServer.Models
 {
     public class ConditionReport
     {
-        [Newtonsoft.Json.JsonIgnore]
-        public int ID { get; set; }
-        public String ConditionKey { get; set; }
-        public int Risk;
+        public int _id { get; set; }
+        public String condition_id { get; set; }
+        public int risk;
     }
 }
