@@ -65,25 +65,8 @@ namespace WellCastServer
 
         public User getUser(string id)
         {
-            var musers = mdb.GetCollection("userDatas").FindAll();
-            var muser = musers.Where(mu => mu["_id"].ToString() == id).First();
-            User wuser = new User();
-            var muserID = muser["_id"].ToString();
-            wuser.ID = muser["_id"].ToString();
-
-            var profileIDs = muser["profiles"].AsBsonArray.ToList();
-            wuser.ProfileMIDs = new List<string>();
-            foreach (var profileID in profileIDs)
-            {
-                wuser.ProfileMIDs.Add(profileID.ToString());
-            }
-
-            var locationIDs = muser["locations"].AsBsonArray.ToList();
-            wuser.LocationMIDs = new List<string>();
-            foreach (var locationID in locationIDs)
-            {
-                wuser.LocationMIDs.Add(locationID.ToString());
-            }
+            var musers = getAllUsers();
+            var wuser = musers.Where(u => u.ID ==id).First();
 
             return wuser;
         }
@@ -111,12 +94,15 @@ namespace WellCastServer
                 try
                 {
                     var locations = muser["locations"].AsBsonArray.ToList();
+                    wuser.LocationMIDs = new List<string>();
                     wuser.Locations = new List<Location>();
                     foreach (var mlocation in locations)
                     {
+                      
                         Location wlocation = new Location();
                         try { wlocation.ID = mlocation["_id"].ToString(); }
                         catch (Exception) { };
+                        wuser.LocationMIDs.Add(wlocation.ID);
                         try { wlocation.name = mlocation["name"].ToString(); }
                         catch (Exception) { };
                         try { wlocation.description = mlocation["description"].ToString(); }
@@ -332,12 +318,6 @@ namespace WellCastServer
             DateTime forecastingDate = new DateTime(now.Year, now.Month, now.Day).AddHours(now.Hour);
 
             DateTime lastforecast = new DateTime();
-
-            try { lastforecast = db.WellCastConditionForecasts.Select(f => f.Date).Max(); }
-            catch (Exception) { };
-
-            if (lastforecast == forecastingDate) { return "Forecast already calculated for date-hour: " + forecastingDate; };
-            //get all profiles
 
             var conditions = db.WellCastConditions.ToList();
 

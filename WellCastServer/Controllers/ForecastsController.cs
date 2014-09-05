@@ -42,8 +42,13 @@ namespace WellCastServer.Controllers
                 //if not we calculate profiles for the user
                 User user = wellCastServerEngine.getUser(user_id);
                 String UserIdGuid = user_id;
-                DateTime LastDate = db.WellCastForecasts.Where(f => f.UserMID == UserIdGuid).Max(f => f.Date);
+                DateTime LastDate = new DateTime();
+                try {
+                    LastDate = db.WellCastForecasts.Where(f => f.UserMID == UserIdGuid).Max(f => f.Date);
+                     }
+                catch(Exception){}
 
+                var totalminutes = (DateTime.Now - LastDate).TotalMinutes;
                 if ((DateTime.Now - LastDate).TotalMinutes < wellCastServerEngine.MaxAgeMinutes)
                 {
 
@@ -62,6 +67,7 @@ namespace WellCastServer.Controllers
                 //if we are here, something did not go well.. so we recalculate forecast for user and start again.
 
                 wellCastServerEngine.calculateNewForecastForUser(user);
+                LastDate = db.WellCastForecasts.Where(f => f.UserMID == UserIdGuid).Max(f => f.Date);
                 List<Forecast> conditions2 = db.WellCastForecasts.Where(f => f.UserMID == UserIdGuid && f.Date == LastDate).ToList();
                 return conditions2;             
         }

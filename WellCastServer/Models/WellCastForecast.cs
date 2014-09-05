@@ -26,7 +26,7 @@ namespace WellCastServer.Models
             
         [Newtonsoft.Json.JsonIgnore]
         public DateTime Date { get; set; }
-        public String date { get { return Date.ToShortDateString(); } }
+        public String date { get { return Date.ToString(); } }
 
                [Newtonsoft.Json.JsonIgnore]
         public int RiskDay0 { get; set; }
