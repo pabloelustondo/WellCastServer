@@ -1,8 +1,10 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using WellCastServer.Models;
 
@@ -63,11 +65,30 @@ namespace WellCastServer
             return wuser;
         }
 
-        public User getUser(string id)
+        public User getUserById(string id)
         {
-            var musers = getAllUsers();
-            var wuser = musers.Where(u => u.ID ==id).First();
+            // Get an Oid from the ID string
+            var oid = new BsonObjectId( new ObjectId(id));
+            // Create a document with the ID we want to find
+            var queryDoc = new QueryDocument { { "_id", oid } };
+            // Query the db for a document with the required ID 
+            var user2 = mdb.GetCollection("userDatas").FindOne(queryDoc);
+            var profileDic = getAllProfilesDictionary();
+            User wuser = mapMongoUser(user2, profileDic);
+            return wuser;
+        }
 
+        public User getUserByProfileId(string id)
+        {
+            // Get an Oid from the ID string
+            var oid = new BsonObjectId(new ObjectId(id));
+            // Create a document with the ID we want to find
+            var queryDoc = new QueryDocument { { "profile_id", oid } };
+            // Query the db for a document with the required ID 
+            Object user2;
+            var profileDic = getAllProfilesDictionary();
+            profileDic.TryGetValue(id, out user2);
+            User wuser = mapMongoUser((BsonDocument)user2, profileDic);
             return wuser;
         }
 
@@ -75,6 +96,24 @@ namespace WellCastServer
 
             List<User> wusers = new List<Models.User>();
             var musers = mdb.GetCollection("userDatas").FindAll();
+            var profilesDic = getAllProfilesDictionary();
+
+            foreach (var muser in musers)
+            {
+                try
+                {
+                    User wuser = mapMongoUser(muser, profilesDic);
+                    wusers.Add(wuser);
+                }
+                catch (Exception) { };
+            }
+
+            return wusers;
+        }
+
+        private Dictionary<String, Object> getAllProfilesDictionary()
+        {
+
             var profiles = mdb.GetCollection("profiles").FindAll();
             Dictionary<String, Object> profilesDic = new Dictionary<string, object>();
 
@@ -82,14 +121,16 @@ namespace WellCastServer
             {
                 profilesDic.Add(profile["_id"].ToString(), profile);
             }
+            return profilesDic;
+        }
 
-
-
-            foreach (var muser in musers)
+        private User mapMongoUser(BsonDocument muser, Dictionary<String, Object> profilesDic)
             {
                 User wuser = new User();
                 var muserID = muser["_id"].ToString();
                 wuser.ID = muser["_id"].ToString();
+
+
 
                 try
                 {
@@ -157,11 +198,8 @@ namespace WellCastServer
 
                 catch (Exception) { };
 
-                wusers.Add(wuser);
+                return wuser;
             }
-
-            return wusers;
-        }
 
         public void logError(string label, string message)
         {

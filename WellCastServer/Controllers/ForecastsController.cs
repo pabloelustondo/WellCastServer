@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Net.Http;
 using System.Web;
@@ -15,7 +16,7 @@ namespace WellCastServer.Controllers
     public class ForecastsController : ApiController
     {
         private WellCastServerContext db = new WellCastServerContext();
-        public WellCastServerEngine wellCastServerEngine = new WellCastServerEngine();
+        public WellCastServerEngine mm = new WellCastServerEngine();
 
         // GET api/Forecasts
         public IEnumerable<Forecast> GetForecasts()
@@ -40,7 +41,7 @@ namespace WellCastServer.Controllers
         {
                 //here is the idea. If we have forecast of a reasonable date and one for each location and profile...then we return this
                 //if not we calculate profiles for the user
-                User user = wellCastServerEngine.getUser(user_id);
+                User user = mm.getUserById(user_id);
                 String UserIdGuid = user_id;
                 DateTime LastDate = new DateTime();
                 try {
@@ -49,7 +50,7 @@ namespace WellCastServer.Controllers
                 catch(Exception){}
 
                 var totalminutes = (DateTime.Now - LastDate).TotalMinutes;
-                if ((DateTime.Now - LastDate).TotalMinutes < wellCastServerEngine.MaxAgeMinutes)
+                if ((DateTime.Now - LastDate).TotalMinutes < mm.MaxAgeMinutes)
                 {
 
                     int numberOfProfiles = (user.ProfileMIDs!=null)?user.ProfileMIDs.Count():0;
@@ -66,7 +67,7 @@ namespace WellCastServer.Controllers
 
                 //if we are here, something did not go well.. so we recalculate forecast for user and start again.
 
-                wellCastServerEngine.calculateNewForecastForUser(user);
+                mm.calculateNewForecastForUser(user);
                 LastDate = db.WellCastForecasts.Where(f => f.UserMID == UserIdGuid).Max(f => f.Date);
                 List<Forecast> conditions2 = db.WellCastForecasts.Where(f => f.UserMID == UserIdGuid && f.Date == LastDate).ToList();
                 return conditions2;             
@@ -74,11 +75,42 @@ namespace WellCastServer.Controllers
 
         // GET api/Forecasts/5
         public List<Forecast> GetForecastsForProfile(String profile_id)
-        {
+        {///////////////////////////
 
-            List<Forecast> conditions = db.WellCastForecasts.Where(f => f.ProfileMID == profile_id).ToList();
+            Expression<Func<Forecast, bool>> hasProfileId = (f => f.ProfileMID == profile_id);
+     
 
-            return conditions;
+            var user = mm.getUserByProfileId(profile_id);
+            DateTime LastDate = new DateTime();
+            try
+            {
+                LastDate = db.WellCastForecasts.Where(hasProfileId).Max(f => f.Date);
+            }
+            catch (Exception) { }
+
+            Expression<Func<Forecast, bool>> hasProfileIdAndDate = (f => f.ProfileMID == profile_id && (f.Date == LastDate));
+
+            var totalminutes = (DateTime.Now - LastDate).TotalMinutes;
+            if ((DateTime.Now - LastDate).TotalMinutes < mm.MaxAgeMinutes)
+            {
+                int numberOfLocations = (user.LocationMIDs != null) ? user.LocationMIDs.Count() : 0;
+
+
+                List<Forecast> conditions = db.WellCastForecasts.Where(hasProfileIdAndDate).ToList();
+
+                if (conditions.Count == numberOfLocations)
+                {
+                    return conditions;
+                }
+            }
+
+            //if we are here, something did not go well.. so we recalculate forecast for user and start again.
+
+            mm.calculateNewForecastForUser(user);
+            LastDate = db.WellCastForecasts.Where(hasProfileId).Max(f => f.Date);
+            List<Forecast> conditions2 = db.WellCastForecasts.Where(hasProfileIdAndDate).ToList();
+            return conditions2;     
+
         }
 
         // PUT api/Forecasts/5
