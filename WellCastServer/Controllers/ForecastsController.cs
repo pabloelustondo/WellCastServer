@@ -74,13 +74,13 @@ namespace WellCastServer.Controllers
         }
 
         // GET api/Forecasts/5
-        public List<Forecast> GetForecastsForProfile(String profile_id)
+        public List<Forecast> GetForecastsForProfile(String profile_id, String user_id)
         {///////////////////////////
 
             Expression<Func<Forecast, bool>> hasProfileId = (f => f.ProfileMID == profile_id);
      
 
-            var user = mm.getUserByProfileId(profile_id);
+            var user = mm.getUserById(user_id);
             DateTime LastDate = new DateTime();
             try
             {

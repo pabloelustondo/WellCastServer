@@ -53,19 +53,22 @@
         <td><p>All Forecasts (impractical in practice..)</p>
             <a href="./api/Forecasts/GetForecasts"> GET: /api/Forecasts/GetForecasts </a>
         </td>
-        <td>
-            @{
+        </tr><tr>
+    <td>
+        @{
 
-                String firstUserId="";
-                try
-                {
-                    firstUserId = ViewBag.user.ID;
-                }
-                catch (Exception) { }
+            String firstUserId = "";
+            try
+            {
+                firstUserId = ViewBag.user.ID;
             }
-            <p>All Forecasts for one userId</p>
-            <a href="./api/Forecasts/GetForecastsForUser?user_id=@firstUserId.ToString()">GET: /api/Forecasts/GetForecastsForUser?user_id=@firstUserId.ToString()</a>
-         </td>
+            catch (Exception) { }
+        }
+        <p>All Forecasts for one userId</p>
+        <a href="./api/Forecasts/GetForecastsForUser?user_id=@firstUserId.ToString()">GET: /api/Forecasts/GetForecastsForUser?user_id=@firstUserId.ToString()</a>
+    </td>
+</tr>
+    <tr>
         <td>
             @{
 
@@ -79,6 +82,19 @@
             <p>All Forecasts for one userId</p>
             <a href="./api/Forecasts/GetForecastsForUser?user_id=@offendingUserId.ToString()">GET: /api/Forecasts/GetForecastsForUser?user_id=@offendingUserId.ToString()</a>
         </td>
+    </tr>
+    <tr>
+        <td>
+            @{
+
+                String offendingUserId2 = "5411b0f884f534020047e851";
+                String offendingProfileId2 = "5411b0f884f534020047e850";
+            }
+            <p>All Forecasts for one userId</p>
+            <a href="./api/Forecasts/GetForecastsForProfile?profile_id=@offendingProfileId2.ToString()&user_id=@offendingUserId2.ToString()">GET: /api/Forecasts/GetForecastsForUser?profile_id=@offendingProfileId2.ToString()&user_id=@offendingUserId2.ToString()</a>
+        </td>
+    </tr>
+    <tr>
         <td>
             @{
 
@@ -93,9 +109,11 @@
             <p>All Forecasts for one profileId</p>
             <a href="./api/Forecasts/GetForecastsForProfile?profile_id=@firstProfileId.ToString()">GET: /api/Forecasts/GetForecastsForProfile?profile_id=@firstProfileId.ToString()</a>
         </td>
-       
 
-    </tr> 
+
+    </tr>
+
+ 
 
 </table>
 

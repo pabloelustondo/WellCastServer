@@ -78,19 +78,6 @@ namespace WellCastServer
             return wuser;
         }
 
-        public User getUserByProfileId(string id)
-        {
-            // Get an Oid from the ID string
-            var oid = new BsonObjectId(new ObjectId(id));
-            // Create a document with the ID we want to find
-            var queryDoc = new QueryDocument { { "profile_id", oid } };
-            // Query the db for a document with the required ID 
-            Object user2;
-            var profileDic = getAllProfilesDictionary();
-            profileDic.TryGetValue(id, out user2);
-            User wuser = mapMongoUser((BsonDocument)user2, profileDic);
-            return wuser;
-        }
 
         public List<User> getAllUsers() {
 
