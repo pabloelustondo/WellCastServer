@@ -75,7 +75,7 @@
                 String offendingUserId = "";
                 try
                 {
-                    offendingUserId = "5409d1978675790200945010";
+                    offendingUserId = "542c53a302d6a4910db3fdd7";
                 }
                 catch (Exception) { }
             }
@@ -89,6 +89,17 @@
 
                 String offendingUserId2 = "5411b0f884f534020047e851";
                 String offendingProfileId2 = "5411b0f884f534020047e850";
+            }
+            <p>All Forecasts for one userId</p>
+            <a href="./api/Forecasts/GetForecastsForProfile?profile_id=@offendingProfileId2.ToString()&user_id=@offendingUserId2.ToString()">GET: /api/Forecasts/GetForecastsForUser?profile_id=@offendingProfileId2.ToString()&user_id=@offendingUserId2.ToString()</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @{
+
+                offendingUserId2 = "53f63b64afc0c102008e85c5";
+                offendingProfileId2 = "53f63b64afc0c102008e85c4";
             }
             <p>All Forecasts for one userId</p>
             <a href="./api/Forecasts/GetForecastsForProfile?profile_id=@offendingProfileId2.ToString()&user_id=@offendingUserId2.ToString()">GET: /api/Forecasts/GetForecastsForUser?profile_id=@offendingProfileId2.ToString()&user_id=@offendingUserId2.ToString()</a>

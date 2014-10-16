@@ -18,18 +18,10 @@ namespace WellCastServer
 
         public WellCastServerEngine()
         {
-            var credential = MongoCredential.CreateMongoCRCredential("alertsmd", "rangle", "m3anstack");
-            //Server settings
-            var settings = new MongoClientSettings
-            {
-                Credentials = new[] { credential },
-                Server = new MongoServerAddress("ds033757.mongolab.com", 33757)
-            };
-
             //Get a Reference to the Client Object
-            var mongoClient = new MongoClient(settings);
+            var mongoClient = new MongoClient( "mongodb://pelustondo:san10ro4@ds041140.mongolab.com:41140/wellcast");
             var mongoServer = mongoClient.GetServer();
-            mdb = mongoServer.GetDatabase("alertsmd");        
+            mdb = mongoServer.GetDatabase("wellcast");        
         }
 
         public string deleteForecast() {
@@ -326,11 +318,65 @@ namespace WellCastServer
                         db.SaveChanges();
                 }//end for each location
             }//end for each profile
+
+                addAlert2User(user);
             }//end for each usser
             db.SaveChanges();
             returnMessage = "Forecast where calculated for date-hour: " + forecastingDate;
             return returnMessage;
         }
+
+        public void addAlert2User(User user){
+            /*
+                 Alerts can either be posted to the /alerts/ endpoint or added directly to mongo, to the "alerts" collection. In either case, each alert has the following structure:
+           {
+              "user_id": "<user_id string>",
+              "kind": "forecast",
+              "text": "<alert text>",
+              "kind_id": "<forecast_id>",
+              "state": "unsent"
+            }
+             * 
+             * 
+          // "entities" is the name of the collection
+          var collection = database.GetCollection<Entity>("entities");
+
+
+
+          Insert a Document
+
+          To insert an Entity:
+
+
+          var entity = new Entity { Name = "Tom" };
+          collection.Insert(entity);
+          var id = entity.Id; // Insert will set the Id if necessary (as it was in this example)
+
+{ "__v" : 0, "_id" : ObjectId("543d93a5a5b48600003cd5d2"), "kind" : "forecast", "kind_id" : "08080808080808080808080a", "state" : "sent", "text" : "You have a new wellcast!", "user_id" : "54355fa2ce5784020097fb62" }
+             */
+            var alertsCollection = mdb.GetCollection("alerts");
+            var alertsAll = alertsCollection.FindAll();
+
+            // Get an Oid from the ID string
+            //var oid = new BsonObjectId(new ObjectId(id));
+            // Create a document with the ID we want to find
+            var queryDoc = new QueryDocument { { "state", "sent" } };
+            // Query the db for a document with the required ID 
+            var alertsSent = mdb.GetCollection("alerts").Find(queryDoc);
+
+            var queryDoc2 = new QueryDocument { { "state", "unsent" } };
+            // Query the db for a document with the required ID 
+            var alertsUnSent = mdb.GetCollection("alerts").Find(queryDoc2);
+            BsonDocument doc2Insert = new BsonDocument();
+            doc2Insert.Add("kind","forecast");
+            doc2Insert.Add("kind_id", "080808080808080808080808");
+            doc2Insert.Add("state", "unsent");
+            doc2Insert.Add("text", "You have a new nice wellcast!");
+            doc2Insert.Add("user_id", user.ID);
+            mdb.GetCollection("alerts").Insert(doc2Insert);
+        
+        }
+
 
         public string calculateNewForecastForUser(User user)
         {
@@ -451,6 +497,7 @@ namespace WellCastServer
                     }//end for each location
                 }//end for each profile
             db.SaveChanges();
+            addAlert2User(user);
             returnMessage = "Forecast where calculated for date-hour: " + forecastingDate;
             return returnMessage;
         }
