@@ -196,6 +196,7 @@ namespace WellCastServer
           //using corresponding the year, month, day and time slot
 
           //for now I will calcualte this hour
+            BsonArray forecastIDs = new BsonArray(); 
             string returnMessage = "Ok";
             DateTime now = DateTime.Now;
             DateTime forecastingDate = new DateTime(now.Year,now.Month,now.Day).AddHours(now.Hour);
@@ -316,17 +317,19 @@ namespace WellCastServer
 
                         db.Entry(forecast).State = EntityState.Modified;
                         db.SaveChanges();
+
+                        forecastIDs.Add(forecast._id);
                 }//end for each location
             }//end for each profile
 
-                addAlert2User(user);
+                addAlert2User(user, forecastIDs);
             }//end for each usser
             db.SaveChanges();
             returnMessage = "Forecast where calculated for date-hour: " + forecastingDate;
             return returnMessage;
         }
 
-        public void addAlert2User(User user){
+        public void addAlert2User(User user, BsonArray forecastIDs){
             /*
                  Alerts can either be posted to the /alerts/ endpoint or added directly to mongo, to the "alerts" collection. In either case, each alert has the following structure:
            {
@@ -369,7 +372,7 @@ namespace WellCastServer
             var alertsUnSent = mdb.GetCollection("alerts").Find(queryDoc2);
             BsonDocument doc2Insert = new BsonDocument();
             doc2Insert.Add("kind","forecast");
-            doc2Insert.Add("kind_id", "080808080808080808080808");
+            doc2Insert.Add("kind_ids", forecastIDs);
             doc2Insert.Add("state", "unsent");
             doc2Insert.Add("text", "You have a new nice wellcast!");
             doc2Insert.Add("user_id", user.ID);
@@ -391,7 +394,7 @@ namespace WellCastServer
             DateTime lastforecast = new DateTime();
 
             var conditions = db.WellCastConditions.ToList();
-
+            BsonArray forecastIDs = new BsonArray(); 
             Random rnd1 = new Random();
                 if (user.Profiles == null) return "no user profiles";
                 foreach (var profile in user.Profiles)
@@ -494,10 +497,11 @@ namespace WellCastServer
 
                         db.Entry(forecast).State = EntityState.Modified;
                         db.SaveChanges();
+                        forecastIDs.Add(forecast._id);
                     }//end for each location
                 }//end for each profile
             db.SaveChanges();
-            addAlert2User(user);
+            addAlert2User(user, forecastIDs);
             returnMessage = "Forecast where calculated for date-hour: " + forecastingDate;
             return returnMessage;
         }
